@@ -179,3 +179,37 @@ const counters = document.querySelectorAll('.counter');
 
   window.addEventListener('scroll', handleReveal);
   window.addEventListener('load', handleReveal);  
+
+
+  // Trigger buttons
+  const userLoginBtn = document.querySelector('.userLogin');
+  const lawyerLoginBtn = document.querySelector('.lawyerLogin');
+
+  // Forms
+  const userForm = document.getElementById('user-login-form');
+  const lawyerForm = document.getElementById('lawyer-login-form');
+
+  // Close buttons (dynamically select both)
+  const closeButtons = document.querySelectorAll('.blur-close-btn');
+
+  // Show User Form
+  userLoginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    userForm.style.display = 'block';
+    lawyerForm.style.display = 'none';
+  });
+
+  // Show Lawyer Form
+  lawyerLoginBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    lawyerForm.style.display = 'block';
+    userForm.style.display = 'none';
+  });
+
+  // Close any open form
+  closeButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      userForm.style.display = 'none';
+      lawyerForm.style.display = 'none';
+    });
+  });

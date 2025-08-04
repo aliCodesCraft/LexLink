@@ -59,8 +59,8 @@
       <div class="login-container" onclick="toggleDropdown(event)">
         <i class="ri-user-3-line login-icon"></i>
         <div class="login-dropdown" id="loginDropdown">
-          <a href="login-user.php">Login as User</a>
-          <a href="login-lawyer.php">Login as Lawyer</a>
+          <a href="#" class="userLogin">Login as User</a>
+          <a href="#" class="lawyerLogin">Login as Lawyer</a>
           <a href="register.php">Register</a>
         </div>
       </div>

@@ -1,4 +1,3 @@
-
 <!-- ==========PHP START========== -->
 
 <!-- Includes -->
@@ -6,7 +5,7 @@
 <!-- Promoted Lawerys -->
 
 <!-- Complaints Form -->
- 
+
 
 <!-- ==========PHP END========== -->
 
@@ -19,6 +18,76 @@
 <!-- ==========Header Linked========== -->
 <?php include_once("includes/header.php"); ?>
 <!-- ==========Header Linked========== -->
+
+
+
+    <div class="blur-form-background" id="user-login-form">
+
+            <div class="blur-close-btn">
+            <i class="ri-close-line" style="background-color: #0A2342; padding:5px; border-radius:50%;"></i>
+        </div>
+
+        <div class="blur-wrapper">
+            <form class="blur-form-container">
+                <h2>User Login</h2>
+
+                <div class="blur-input-group">
+                    <i class="ri-mail-line"></i>
+                    <input type="email" placeholder="Your Email" required />
+                </div>
+
+                <div class="blur-input-group">
+                    <i class="ri-lock-2-line"></i>
+                    <input type="password" placeholder="Your Password" required />
+                </div>
+
+                <input type="submit" value="Login" class="blur-btn" />
+
+                <p style="text-align: center; margin-top: 15px; font-size: 0.95rem;">
+                    Don't have an account?
+                    <a href="#" style="color: gold; text-decoration: underline; font-weight: 500;">Sign Up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="blur-form-background" id="lawyer-login-form">
+
+            <div class="blur-close-btn">
+            <i class="ri-close-line" style="background-color: #0A2342; padding:5px; border-radius:50%;"></i>
+        </div>
+
+        <div class="blur-wrapper">
+            <form class="blur-form-container">
+                <h2>Lawyer Login</h2>
+
+                <div class="blur-input-group">
+                    <i class="ri-mail-line"></i>
+                    <input type="email" placeholder="Your Email" required />
+                </div>
+
+                <div class="blur-input-group">
+                    <i class="ri-lock-2-line"></i>
+                    <input type="password" placeholder="Your Password" required />
+                </div>
+
+                <input type="submit" value="Login" class="blur-btn" />
+
+                <p style="text-align: center; margin-top: 15px; font-size: 0.95rem;">
+                    Don't have an account?
+                    <a href="#" style="color: gold; text-decoration: underline; font-weight: 500;">Sign Up</a>
+                </p>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
 
 
 <!-- ==========Hero Section Start========= -->
@@ -626,10 +695,10 @@
 <!-- ==========Brands Start========== -->
 <div class="reveal">
     <div class="hiw-heading-v2">
-     <h2>Trusted by Leading Brands</h2>
-  <p>We proudly work with the most respected names in the industry.</p>
-</div>
-  <div class="brands">
+        <h2>Trusted by Leading Brands</h2>
+        <p>We proudly work with the most respected names in the industry.</p>
+    </div>
+    <div class="brands">
         <div class="brand">
             <img src="assets/images/Extras/brand1.png" alt="" width="130px">
         </div>
@@ -642,12 +711,12 @@
             <img src="assets/images/Extras/brand3.png" alt="">
         </div>
 
-                <div class="brand">
+        <div class="brand">
             <img src="assets/images/Extras/brand4.png" alt="">
         </div>
-  </div>
+    </div>
 </div>
- <!-- ==========Brands Ends========== -->
+<!-- ==========Brands Ends========== -->
 
 
 
