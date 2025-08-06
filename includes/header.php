@@ -39,7 +39,7 @@
 
 <body>
 
-  <header>
+  <div class="header">
       <nav>
   <div class="logo">
     <img src="assets/images/Logos/logoNavy.png" alt="" width="100px" height="100px">
@@ -112,6 +112,4 @@
     </div>
 </div>
 <!-- ==========Mobile Nav END========== -->
-
-
-  </header>
+</div>

@@ -1,4 +1,7 @@
-<?php include_once("includes/config.php"); ?>
+<?php
+include_once("includes/config.php");
+include_once("handlers/loginForm_handler.php");
+?>
 
 <div class="blur-form-background" id="user-login-form">
 
@@ -7,25 +10,26 @@
     </div>
 
     <div class="blur-wrapper">
-        <form class="blur-form-container">
+        <form class="blur-form-container" method="POST">
             <h2>Login</h2>
 
-            <!-- Sucess msg from register form -->
-            <?php if (!empty($success)): ?>
-                <div style="color: green; text-align: center; margin-bottom: 10px;">
-                    <?= $success ?>
+
+            <!-- Error Messege -->
+            <?php if (!empty($loginError)): ?>
+                <div style="color: red; text-align:center; margin-bottom: 10px;">
+                    <?= $loginError ?>
                 </div>
             <?php endif; ?>
 
 
             <div class="blur-input-group">
                 <i class="ri-mail-line"></i>
-                <input type="email" placeholder="Your Email" name="userloginmail" required />
+                <input type="email" placeholder="Your Email" name="loginemail" required />
             </div>
 
             <div class="blur-input-group">
                 <i class="ri-lock-2-line"></i>
-                <input type="password" placeholder="Your Password" name="userloginpassword" required />
+                <input type="password" placeholder="Your Password" name="loginpassword" required />
             </div>
 
             <input type="submit" value="Login" class="blur-btn" name="btnUserLogin" />
@@ -37,3 +41,12 @@
         </form>
     </div>
 </div>
+
+<!-- Show Form Modal On Error -->
+<?php if (!empty($loginError)): ?>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById('user-login-form').style.display = 'block';
+        });
+    </script>
+<?php endif; ?>

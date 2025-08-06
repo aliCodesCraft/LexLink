@@ -50,7 +50,7 @@ p {
 }
 
 
-header {
+.header {
   width: 100%;
   background-color: white;
   color: #0A2342;
@@ -367,7 +367,13 @@ nav {
   /* font-family: "Inter", sans-serif; */
 }
 
-.hero .btn {
+
+.lawyer-btn{
+  text-align: center;
+  margin-top: 3%;
+}
+
+.hero .btn,#lawyer-btn {
   background: #0A2342;
   color: goldenrod;
   padding: 8px 32px;
@@ -1411,6 +1417,28 @@ strong{
   text-align: center;
 }
 
-  /* #user-register-form {
-    display: block !important;
-  } */
+
+  .custom-alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px 20px;
+    width: 90%;
+    max-width: 500px;
+    border: 1px solid #f5c6cb;
+    border-radius: 5px;
+    position: relative;
+    font-family: sans-serif;
+    box-shadow: 0px 3px 6px rgba(0,0,0,0.1);
+    z-index: 10;
+    display: none;
+}
+
+.custom-alert .close-alert {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #721c24;
+    cursor: pointer;
+}
