@@ -1,19 +1,3 @@
-<!-- ==========PHP START========== -->
-
-<!-- Includes -->
-
-<!-- Promoted Lawerys -->
-
-<!-- Complaints Form -->
-
-
-<!-- ==========PHP END========== -->
-
-
-
-
-
-
 
 <!-- ==========Header Linked========== -->
 <?php include_once("includes/header.php"); ?>
@@ -21,70 +5,11 @@
 
 
 
-    <div class="blur-form-background" id="user-login-form">
+<!-- User Login Form -->
+<?php include_once ("userLogin.php"); ?>
 
-            <div class="blur-close-btn">
-            <i class="ri-close-line" style="background-color: #0A2342; padding:5px; border-radius:50%;"></i>
-        </div>
-
-        <div class="blur-wrapper">
-            <form class="blur-form-container">
-                <h2>User Login</h2>
-
-                <div class="blur-input-group">
-                    <i class="ri-mail-line"></i>
-                    <input type="email" placeholder="Your Email" required />
-                </div>
-
-                <div class="blur-input-group">
-                    <i class="ri-lock-2-line"></i>
-                    <input type="password" placeholder="Your Password" required />
-                </div>
-
-                <input type="submit" value="Login" class="blur-btn" />
-
-                <p style="text-align: center; margin-top: 15px; font-size: 0.95rem;">
-                    Don't have an account?
-                    <a href="#" style="color: gold; text-decoration: underline; font-weight: 500;">Sign Up</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-    <div class="blur-form-background" id="lawyer-login-form">
-
-            <div class="blur-close-btn">
-            <i class="ri-close-line" style="background-color: #0A2342; padding:5px; border-radius:50%;"></i>
-        </div>
-
-        <div class="blur-wrapper">
-            <form class="blur-form-container">
-                <h2>Lawyer Login</h2>
-
-                <div class="blur-input-group">
-                    <i class="ri-mail-line"></i>
-                    <input type="email" placeholder="Your Email" required />
-                </div>
-
-                <div class="blur-input-group">
-                    <i class="ri-lock-2-line"></i>
-                    <input type="password" placeholder="Your Password" required />
-                </div>
-
-                <input type="submit" value="Login" class="blur-btn" />
-
-                <p style="text-align: center; margin-top: 15px; font-size: 0.95rem;">
-                    Don't have an account?
-                    <a href="#" style="color: gold; text-decoration: underline; font-weight: 500;">Sign Up</a>
-                </p>
-            </form>
-        </div>
-    </div>
-
-
-
-
-
+<!-- User Register Form -->
+<?php include_once ("userRegister.php"); ?>
 
 
 
