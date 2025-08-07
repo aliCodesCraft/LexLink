@@ -1,7 +1,5 @@
-<?php
-session_start();
-include_once("includes/customAlert.php");
-?>
+<!-- Login Success Messege -->
+<?php include_once("includes/sucess.php"); ?> 
 
 <!-- ==========Header Linked========== -->
 <?php include_once("includes/header.php"); ?>
@@ -9,10 +7,10 @@ include_once("includes/customAlert.php");
 
 
 <!-- User Login Form -->
-<?php include_once ("userLogin.php"); ?>
+<?php include_once("user/userLogin.php"); ?>
 
 <!-- User Register Form -->
-<?php include_once ("userRegister.php"); ?>
+<?php include_once("user/userRegister.php"); ?>
 
 <!-- ==========Hero Section Start========= -->
 <div class="hero-container" id="Home">
@@ -372,9 +370,9 @@ include_once("includes/customAlert.php");
         <div class="profile-button-prev"></div>
         <div class="profile-button-next"></div>
 
-         <div class="lawyer-btn">
-                <a href="#" class="btn" id="lawyer-btn">View All Lawyers</a>
-            </div>
+        <div class="lawyer-btn">
+            <a href="#" class="btn" id="lawyer-btn">View All Lawyers</a>
+        </div>
     </div>
 </section>
 <!-- ==========Top Lawyers End========== -->

@@ -2,7 +2,7 @@
  
 <?php 
 include_once("includes/config.php");
-include_once("handlers/registerForm_handler.php"); ?>
+include_once("user/handlers/registerForm_handler.php"); ?>
 <!-- Register Form Logic Included -->
 
 

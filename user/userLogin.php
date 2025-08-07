@@ -1,6 +1,6 @@
 <?php
 include_once("includes/config.php");
-include_once("handlers/loginForm_handler.php");
+include_once("user/handlers/loginForm_handler.php");
 ?>
 
 <div class="blur-form-background" id="user-login-form">

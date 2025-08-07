@@ -50,8 +50,18 @@
 
 
 <script src="assets/js/swiper-bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<script>
+  // Wait until DOM is fully ready
+  document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(() => {
+      if (window.profileCardSwiper) profileCardSwiper.update();
+      if (window.swiper) swiper.update();
+    }, 300); // Delay ensures layout is settled
+  });
+</script>
 
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
 <!-- Swiper Activation -->
 <script>
@@ -122,7 +132,6 @@
     }
   });
 </script>
-
 
 <script src="assets/js/formSubmiosn.js"></script>
 <script src="assets/js/script.js"></script>

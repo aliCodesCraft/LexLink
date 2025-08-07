@@ -1,12 +1,4 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['username']) || !isset($_SESSION['useremail'])) {
-    echo "<script>window.location.href = 'index.php?login=required';</script>";
-    exit;
-}
-?>
-
+<?php include_once ("includes/auth.php"); ?>
 
 <!DOCTYPE html>
 <html lang="en">

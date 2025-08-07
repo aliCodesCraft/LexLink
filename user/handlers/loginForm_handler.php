@@ -23,9 +23,12 @@ if (isset($_POST['btnUserLogin']) && $_SERVER["REQUEST_METHOD"] == "POST") {
         if ($isPasswordCorrect) {
             $_SESSION["username"] = $user['user_name'];
             $_SESSION["useremail"] = $user['user_email'];
+            $_SESSION['role'] = $user['role'];
+
+             $_SESSION["login_success"] = true;  // 👈 SweetAlert trigger flag
             session_write_close();
 
-            echo "<script>window.location.href = 'ali.php';</script>";
+            echo "<script>window.location.href='index.php';</script>";
         } else {
             $loginError = "⚠️ Email or Password is Incorrect";
             $showLogin = true;
