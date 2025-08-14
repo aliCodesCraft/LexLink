@@ -47,7 +47,7 @@
 
 
 
-
+<script src="assets/js/sweetalert2.min.js.js"></script>
 
 <script src="assets/js/swiper-bundle.min.js"></script>
 <script>

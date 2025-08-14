@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LexLink</title>
+  <link rel="stylesheet" href="assets/css/remixicon.css">
   <link rel="icon" href="assets/images/Logos/logoWhite.png" type="image/x-icon">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -39,17 +40,17 @@
   <div class="header">
     <nav>
       <div class="logo">
-        <img src="assets/images/Logos/logoNavy.png" alt="" width="100px" height="100px">
+        <a href="index.php"><img src="assets/images/Logos/logoNavy.png" alt="" width="100px" height="100px"></a>
       </div>
 
       <!-- NEW WRAPPER for nav + icons -->
       <div class="nav-right">
         <ul class="nav-links">
-          <li><a href="#Home">Home</a></li>
-          <li><a href="#Practice-Areas">Practice Areas</a></li>
-          <li><a href="#Top-Lawyers">Top Lawyers</a></li>
-          <li><a href="#Case-Studies">Case Studies</a></li>
-          <li><a href="#How-It-Works">How It Works</a></li>
+          <li><a href="index.php#Home">Home</a></li>
+          <li><a href="index.php#Practice-Areas">Practice Areas</a></li>
+          <li><a href="index.php#Top-Lawyers">Top Lawyers</a></li>
+          <li><a href="index.php#Case-Studies">Case Studies</a></li>
+          <li><a href="index.php#How-It-Works">How It Works</a></li>
         </ul>
 
         <div class="right-icons">
@@ -80,7 +81,7 @@
                 <!-- Default Values -->
               <?php else: ?>
                 <a href="#" class="userLogin">Login as User</a>
-                <a href="#" class="lawyerLogin">Login as Lawyer</a>
+                <a href="lawyer/login.php" class="lawyerLogin">Login as Lawyer</a>
               <?php endif; ?>
             </div>
           </div>
@@ -98,18 +99,13 @@
   <!-- ==========Mobile Nav Start========== -->
   <div class="mobile-container">
     <div class="mobile-nav">
-      <!-- Logo -->
-      <div class="logo">
-        <img src="assets/images/logos/logo1.png" alt="">
-      </div>
-
       <!-- Nav Links -->
       <div class="tabs">
-        <div class="m-nav-link"><a href="index.html">Home</a></div>
-        <div class="m-nav-link"><a href="pages/Product-Pages/Product-Page-1.html">Products</a></div>
-        <div class="m-nav-link"><a href="pages/Gallery-Page.html">Gallery</a></div>
-        <div class="m-nav-link"><a href="pages/About-Page.html">About Us</a></div>
-        <div class="m-nav-link"><a href="pages/Contact-Page.html">Contact Us</a></div>
+        <div class="m-nav-link"><a href="index.php">Home</a></div>
+        <div class="m-nav-link"><a href="index.php#Practice-Areas">Practice Areas</a></div>
+        <div class="m-nav-link"><a href="index.php#Top-Lawyers">Top Lawyers</a></div>
+        <div class="m-nav-link"><a href="index.php#Case-Studies">Case Studies</a></div>
+        <div class="m-nav-link"><a href="index.php#How-It-Works">How It Works</a></div>
       </div>
 
       <!-- Social Links -->

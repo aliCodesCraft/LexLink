@@ -208,3 +208,16 @@ document.querySelectorAll('.blur-close-btn').forEach((closeBtn) => {
         document.getElementById('user-register-form').style.display = 'none';
     });
 });
+
+// Show Booking Form
+document.querySelectorAll('.bookAppoitment').forEach((btn) => {
+    btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.getElementById('booking-form').style.display = 'block';
+    });
+});
+
+// Hide Booking Form when clicking close button
+document.querySelector('.blur-close-btn').addEventListener('click', function () {
+    document.getElementById('booking-form').style.display = 'none';
+});

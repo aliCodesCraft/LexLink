@@ -4,6 +4,21 @@
 <!-- ==========Header Linked========== -->
 <?php include_once("includes/header.php"); ?>
 <!-- ==========Header Linked========== -->
+<?php
+include_once("includes/config.php");
+
+$getLawyers = "
+    SELECT lawyers.*, categories.category_name
+    FROM lawyers
+    INNER JOIN categories 
+        ON lawyers.lawyer_category = categories.category_id
+    WHERE lawyers.lawyer_status = 'active' 
+      AND lawyers.is_lawyer_promoted = 1
+";
+
+$lawyersData = mysqli_query($connection, $getLawyers);
+$rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
+?>
 
 
 <!-- User Login Form -->
@@ -76,6 +91,10 @@
 
 
 <!-- ==========Services Start========== -->
+
+
+
+
 <section class="services reveal" id="Practice-Areas">
     <div class="contained">
         <div class="hiw-heading-v2">
@@ -175,8 +194,6 @@
 <!-- ==========Services End========== -->
 
 
-
-
 <!-- ==========Top Lawyers Start End========== -->
 <section class="reveal" id="Top-Lawyers">
     <!-- ============ Trending Slider Start ============ -->
@@ -185,19 +202,18 @@
         <p>The best minds. The strongest defense..</p>
     </div>
 
-    <!-- PROFILE CARD SWIPER -->
-    <div class="swiper profile-card-slider">
-        <div class="swiper-wrapper profile-card-wrapper">
 
-            <!-- Swiper Slide 1 -->
+<div class="swiper profile-card-slider">
+    <div class="swiper-wrapper">
+        <?php foreach($rows as $topLawyers){ ?>
             <div class="swiper-slide profile-slide">
                 <div class="profile-card">
                     <div class="image">
-                        <img src="assets/images/Profiles.php/female1.jpeg" alt="" class="profile-img" />
+                        <img src="lawyer/assets/lawyer_uploads/<?= $topLawyers['lawyer_picture']; ?>" alt="" class="profile-img" />
                     </div>
                     <div class="text-data">
-                        <span class="name">Juliya Smith</span>
-                        <span class="job">Legal Affairs</span>
+                        <span class="name"><?= $topLawyers['lawyer_name']; ?></span>
+                        <span class="job"><?= $topLawyers['category_name'];?></span>
                     </div>
                     <div class="media-buttons rating">
                         <i class="ri-star-fill"></i>
@@ -207,7 +223,7 @@
                         <i class="ri-star-fill"></i>
                     </div>
                     <div class="buttons">
-                        <button class="button">View Profile</button>
+                        <a href="lawyer-profile.php?ID=<?= $topLawyers['lawyer_id']; ?>" class="button">View Profile</a>
                     </div>
                     <div class="analytics">
                         <div class="data"><i class="ri-heart-fill"></i><span class="number">60k</span></div>
@@ -216,164 +232,19 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- Swiper Slide 1 -->
-            <div class="swiper-slide profile-slide">
-                <div class="profile-card">
-                    <div class="image">
-                        <img src="assets/images/Profiles.php/female1.jpeg" alt="" class="profile-img" />
-                    </div>
-                    <div class="text-data">
-                        <span class="name">Juliya Smith</span>
-                        <span class="job">Legal Affairs</span>
-                    </div>
-                    <div class="media-buttons rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <div class="buttons">
-                        <button class="button">View Profile</button>
-                    </div>
-                    <div class="analytics">
-                        <div class="data"><i class="ri-heart-fill"></i><span class="number">60k</span></div>
-                        <div class="data"><i class="ri-chat-1-fill"></i><span class="number">20k</span></div>
-                        <div class="data"><i class="ri-share-forward-fill"></i><span class="number">12k</span></div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Swiper Slide 1 -->
-            <div class="swiper-slide profile-slide">
-                <div class="profile-card">
-                    <div class="image">
-                        <img src="assets/images/Profiles.php/female1.jpeg" alt="" class="profile-img" />
-                    </div>
-                    <div class="text-data">
-                        <span class="name">Juliya Smith</span>
-                        <span class="job">Legal Affairs</span>
-                    </div>
-                    <div class="media-buttons rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <div class="buttons">
-                        <button class="button">View Profile</button>
-                    </div>
-                    <div class="analytics">
-                        <div class="data"><i class="ri-heart-fill"></i><span class="number">60k</span></div>
-                        <div class="data"><i class="ri-chat-1-fill"></i><span class="number">20k</span></div>
-                        <div class="data"><i class="ri-share-forward-fill"></i><span class="number">12k</span></div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Swiper Slide 1 -->
-            <div class="swiper-slide profile-slide">
-                <div class="profile-card">
-                    <div class="image">
-                        <img src="assets/images/Profiles.php/female1.jpeg" alt="" class="profile-img" />
-                    </div>
-                    <div class="text-data">
-                        <span class="name">Juliya Smith</span>
-                        <span class="job">Legal Affairs</span>
-                    </div>
-                    <div class="media-buttons rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <div class="buttons">
-                        <button class="button">View Profile</button>
-                    </div>
-                    <div class="analytics">
-                        <div class="data"><i class="ri-heart-fill"></i><span class="number">60k</span></div>
-                        <div class="data"><i class="ri-chat-1-fill"></i><span class="number">20k</span></div>
-                        <div class="data"><i class="ri-share-forward-fill"></i><span class="number">12k</span></div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Swiper Slide 1 -->
-            <div class="swiper-slide profile-slide">
-                <div class="profile-card">
-                    <div class="image">
-                        <img src="assets/images/Profiles.php/female1.jpeg" alt="" class="profile-img" />
-                    </div>
-                    <div class="text-data">
-                        <span class="name">Juliya Smith</span>
-                        <span class="job">Legal Affairs</span>
-                    </div>
-                    <div class="media-buttons rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <div class="buttons">
-                        <button class="button">View Profile</button>
-                    </div>
-                    <div class="analytics">
-                        <div class="data"><i class="ri-heart-fill"></i><span class="number">60k</span></div>
-                        <div class="data"><i class="ri-chat-1-fill"></i><span class="number">20k</span></div>
-                        <div class="data"><i class="ri-share-forward-fill"></i><span class="number">12k</span></div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- Swiper Slide 1 -->
-            <div class="swiper-slide profile-slide">
-                <div class="profile-card">
-                    <div class="image">
-                        <img src="assets/images/Profiles.php/female1.jpeg" alt="" class="profile-img" />
-                    </div>
-                    <div class="text-data">
-                        <span class="name">Juliya Smith</span>
-                        <span class="job">Legal Affairs</span>
-                    </div>
-                    <div class="media-buttons rating">
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                        <i class="ri-star-fill"></i>
-                    </div>
-                    <div class="buttons">
-                        <button class="button">View Profile</button>
-                    </div>
-                    <div class="analytics">
-                        <div class="data"><i class="ri-heart-fill"></i><span class="number">60k</span></div>
-                        <div class="data"><i class="ri-chat-1-fill"></i><span class="number">20k</span></div>
-                        <div class="data"><i class="ri-share-forward-fill"></i><span class="number">12k</span></div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-        <!-- Custom Pagination + Navigation -->
-        <div class="profile-pagination"></div>
-        <div class="profile-button-prev"></div>
-        <div class="profile-button-next"></div>
-
-        <div class="lawyer-btn">
-            <a href="#" class="btn" id="lawyer-btn">View All Lawyers</a>
-        </div>
+        <?php } ?>
     </div>
+
+    <!-- Custom Pagination + Navigation -->
+    <div class="profile-pagination"></div>
+    <div class="profile-button-prev"></div>
+    <div class="profile-button-next"></div>
+
+    <div class="lawyer-btn">
+        <a href="lawyers.php" class="btn" id="lawyer-btn">View All Lawyers</a>
+    </div>
+</div>
+
 </section>
 <!-- ==========Top Lawyers End========== -->
 
