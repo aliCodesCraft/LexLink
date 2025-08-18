@@ -24,13 +24,10 @@ $LawyerID = $_GET['ID'];
 // Handle booking form submissions
 include_once("includes/handlers/bookingForm_handler.php");
 
-$getLawyers = "
-    SELECT lawyers.*, categories.category_name, cities.city_name
-    FROM lawyers
-    INNER JOIN categories ON lawyers.lawyer_category = categories.category_id
-    INNER JOIN cities ON lawyers.lawyer_city = cities.city_id
-    WHERE lawyers.lawyer_status = 'active' AND lawyers.lawyer_id = '$LawyerID'
-";
+$getLawyers = "SELECT * FROM `lawyers` 
+INNER JOIN `categories` ON lawyers.lawyer_category = categories.category_id 
+INNER JOIN `cities` on lawyers.lawyer_city = cities.city_id
+WHERE `lawyer_id` = $LawyerID";
 
 // Executing getLawyers query
 $lawyerData = mysqli_query($connection, $getLawyers);
@@ -48,6 +45,7 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
         <form class="blur-form-container" method="POST">
             <h2>Book Appointment</h2>
 
+            <!-- Name -->
             <div class="blur-input-row">
                 <div class="blur-input-group">
                     <i class="ri-user-line"></i>
@@ -55,6 +53,7 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
                     <input type="text" placeholder="Your Name" required name="name" value="<?php echo $_SESSION['username']; ?>" />
                 </div>
 
+                <!-- Email -->
                 <div class="blur-input-group">
                     <i class="ri-mail-line"></i>
                     <!-- Useremail stored in session -->
@@ -62,11 +61,13 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
                 </div>
             </div>
 
+            <!-- Address -->
             <div class="blur-input-group">
                 <i class="ri-map-pin-line"></i>
                 <input type="text" placeholder="Your Address" required name="address" />
             </div>
 
+            <!-- DateTime -->
             <div class="blur-input-group">
                 <i class="ri-calendar-schedule-fill"></i>
                 <input type="datetime-local" placeholder="date time" required name="date-time" />
@@ -108,40 +109,40 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
             <p><?php echo $lawyer['city_name']; ?> Expert in High-Profile Cases</p>
 
 
-            
-<div class="action-buttons">
 
-    <?php if ($status == 'pending'): ?>
-        <a href="javascript:void(0);" class="btn-primary" style="background:gold; color:black;">
-            <i class="fas fa-clock"></i> Appointment is Pending
-        </a>
+            <div class="action-buttons">
 
-    <?php elseif ($status == 'completed'): ?>
-        <a href="javascript:void(0);" class="btn-primary" style="background:green; color:white;">
-            <i class="fas fa-check-circle"></i> Appointment Completed
-        </a>
-        <br>
-        <a href="#" id="bookAgainBtn" class="btn-primary" style="margin-top:5px; background:#007bff; color:white;">
-            Book Again
-        </a>
+                <?php if ($status == 'pending'): ?>
+                    <a href="javascript:void(0);" class="btn-primary" style="background:gold; color:black;">
+                        <i class="fas fa-clock"></i> Appointment is Pending
+                    </a>
 
-    <?php elseif ($status == 'rejected'): ?>
-        <a href="javascript:void(0);" class="btn-primary" style="background:red; color:white;">
-            <i class="fas fa-times-circle"></i> Appointment Rejected
-        </a>
-        <br>
-        <a href="#" id="bookAgainBtn" class="btn-primary" style="margin-top:5px; background:#007bff; color:white;">
-            Book Again
-        </a>
+                <?php elseif ($status == 'completed'): ?>
+                    <a href="javascript:void(0);" class="btn-primary" style="background:green; color:white;">
+                        <i class="fas fa-check-circle"></i> Appointment Completed
+                    </a>
+                    <br>
+                    <a href="#" id="bookAgainBtn" class="btn-primary" style="margin-top:5px; background:#007bff; color:white;">
+                        Book Again
+                    </a>
 
-    <?php else: ?>
-        <a href="#" id="bookBtn" class="btn-primary bookAppoitment">
-            <i class="fas fa-calendar-check"></i> Book Appointment
-        </a>
-        <span class="status-available"><i class="fas fa-circle"></i> Available</span>
-    <?php endif; ?>
+                <?php elseif ($status == 'rejected'): ?>
+                    <a href="javascript:void(0);" class="btn-primary" style="background:red; color:white;">
+                        <i class="fas fa-times-circle"></i> Appointment Rejected
+                    </a>
+                    <br>
+                    <a href="#" id="bookAgainBtn" class="btn-primary" style="margin-top:5px; background:#007bff; color:white;">
+                        Book Again
+                    </a>
 
-</div>
+                <?php else: ?>
+                    <a href="#" id="bookBtn" class="btn-primary bookAppoitment">
+                        <i class="fas fa-calendar-check"></i> Book Appointment
+                    </a>
+                    <span class="status-available"><i class="fas fa-circle"></i> Available</span>
+                <?php endif; ?>
+
+            </div>
 
 
 
@@ -190,43 +191,41 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
 <!-- Lawyer profile content end -->
 
 <style>
-        .profile-banner {
+    .profile-banner {
         background: #0A66C2 url('lawyer/assets/lawyer_uploads/<?php echo $lawyer['lawyer_picture']; ?>') center/cover no-repeat;
         height: 200px;
         position: relative;
     }
-
 </style>
 
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-$(function(){
+    $(function() {
 
-    // Book Again click → replace button with Book Appointment
-    $(document).on("click", "#bookAgainBtn", function(e){
-        e.preventDefault();
-        $(".action-buttons").html(`
+        // Book Again click → replace button with Book Appointment
+        $(document).on("click", "#bookAgainBtn", function(e) {
+            e.preventDefault();
+            $(".action-buttons").html(`
             <a href="#" id="bookBtn" class="btn-primary bookAppoitment">
                 <i class="fas fa-calendar-check"></i> Book Appointment
             </a>
             <span class="status-available"><i class="fas fa-circle"></i> Available</span>
         `);
+        });
+
+        // Book Appointment click → show modal
+        $(document).on("click", "#bookBtn, .bookAppoitment", function(e) {
+            e.preventDefault();
+            $("#booking-form").show();
+        });
+
+        // Close modal
+        $(document).on("click", ".blur-close-btn", function() {
+            $("#booking-form").hide();
+        });
+
     });
-
-    // Book Appointment click → show modal
-    $(document).on("click", "#bookBtn, .bookAppoitment", function(e){
-        e.preventDefault();
-        $("#booking-form").show();
-    });
-
-    // Close modal
-    $(document).on("click", ".blur-close-btn", function(){
-        $("#booking-form").hide();
-    });
-
-});
-
 </script>
 
 <!-- ==========Include footer layout========== -->

@@ -21,6 +21,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Custom styles for this template-->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
 
 
@@ -88,14 +90,14 @@
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fa-solid fa-calendar-check"></i>
-                    <span>My Appoitments</span>
+                    <span>My Appointments</span>
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">More Options:</h6>
-                        <a class="collapse-item" href="Pending-Appoitments.php">Pending Appoitments</a>
-                        <a class="collapse-item" href="Compeleted-Appoitments.php">Compeleted Appoitments</a>
-                        <a href="Rejected-Appoitments.php" class="collapse-item">Rejected Appoitments</a>
+                        <a class="collapse-item" href="Pending-Appointments.php">Pending Appointments</a>
+                        <a class="collapse-item" href="Completed-Appointments.php">Completed Appointments</a>
+                        <a href="Rejected-Appointments.php" class="collapse-item">Rejected Appointments</a>
                     </div>
                 </div>
             </li>
@@ -111,8 +113,8 @@
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">More Options:</h6>
-                        <a class="collapse-item" href="View-Profile.php">View Profile</a>
-                        <a class="collapse-item" href="Edit-Profile.php">Edit Profile</a>
+                        <a class="collapse-item" href="view-profile.php">View Profile</a>
+                        <a class="collapse-item" href="edit-profile.php">Edit Profile</a>
                     </div>
                 </div>
             </li>
