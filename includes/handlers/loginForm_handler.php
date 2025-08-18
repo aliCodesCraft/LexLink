@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-error_reporting(E_ALL);
 
 $loginError = "";
 $loginSuccess = "";
@@ -21,11 +19,12 @@ if (isset($_POST['btnUserLogin']) && $_SERVER["REQUEST_METHOD"] == "POST") {
         $isPasswordCorrect = password_verify($userLoginPassword, $hashedPassword);
 
         if ($isPasswordCorrect) {
+            $_SESSION["userID"] = $user['user_id'];
             $_SESSION["username"] = $user['user_name'];
             $_SESSION["useremail"] = $user['user_email'];
             $_SESSION['role'] = $user['role'];
 
-             $_SESSION["login_success"] = true;  // 👈 SweetAlert trigger flag
+             $_SESSION["login_success"] = true;  // SweetAlert trigger flag
             session_write_close();
 
             echo "<script>window.location.href='index.php';</script>";
@@ -38,3 +37,5 @@ if (isset($_POST['btnUserLogin']) && $_SERVER["REQUEST_METHOD"] == "POST") {
         $showLogin = true;
     }
 }
+
+?>

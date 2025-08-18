@@ -1,8 +1,8 @@
 <!-- Register Form Logic Included -->
  
 <?php 
-include_once("includes/config.php");
-include_once("user/handlers/registerForm_handler.php"); ?>
+include_once("includes/config/config.php");
+include_once("includes/handlers/registerForm_handler.php"); ?>
 <!-- Register Form Logic Included -->
 
 

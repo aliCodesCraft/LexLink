@@ -1,11 +1,12 @@
 <!-- Login Success Messege -->
-<?php include_once("includes/sucess.php"); ?> 
+<?php include_once("includes/utils/sucess.php");?> 
 
 <!-- ==========Header Linked========== -->
-<?php include_once("includes/header.php"); ?>
+<?php
+include_once("includes/layouts/header.php"); ?>
 <!-- ==========Header Linked========== -->
 <?php
-include_once("includes/config.php");
+include_once("includes/config/config.php");
 
 $getLawyers = "
     SELECT lawyers.*, categories.category_name
@@ -16,16 +17,17 @@ $getLawyers = "
       AND lawyers.is_lawyer_promoted = 1
 ";
 
-$lawyersData = mysqli_query($connection, $getLawyers);
-$rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
+$lawyerData = mysqli_query($connection, $getLawyers);
+$lawyer = mysqli_fetch_all($lawyerData, MYSQLI_ASSOC);
 ?>
 
 
 <!-- User Login Form -->
-<?php include_once("user/userLogin.php"); ?>
+<?php include_once("includes/forms/userLogin.php"); ?>
 
 <!-- User Register Form -->
-<?php include_once("user/userRegister.php"); ?>
+<?php include_once("includes/forms/userRegister.php"); ?>
+
 
 <!-- ==========Hero Section Start========= -->
 <div class="hero-container" id="Home">
@@ -47,7 +49,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
         </div>
 
         <div class="right">
-            <img id="slider-image" src="assets/images/Hero-Baner/hero-1.png" alt="Slider Image" />
+            <img id="slider-image" src="assets/user_assets/images/Hero-Baner/hero-1.png" alt="Slider Image" />
         </div>
 
         <div class="bg-color"></div>
@@ -88,13 +90,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 <!-- ==========Hero Section End========== -->
 
 
-
-
 <!-- ==========Services Start========== -->
-
-
-
-
 <section class="services reveal" id="Practice-Areas">
     <div class="contained">
         <div class="hiw-heading-v2">
@@ -109,7 +105,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Criminal Law -->
                     <li class="sc-item">
                         <a href="criminal-law">
-                            <img loading="lazy" alt="Criminal Law" src="assets/images/Law/criminal.png" height="69" width="69">
+                            <img loading="lazy" alt="Criminal Law" src="assets/user_assets/images/Law/criminal.png" height="69" width="69">
                             <p>Criminal Law</p>
                         </a>
                     </li>
@@ -117,7 +113,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Family Law -->
                     <li class="sc-item">
                         <a href="family-law">
-                            <img loading="lazy" alt="Family Law" src="assets/images/Law/Divorce.png" height="69" width="69">
+                            <img loading="lazy" alt="Family Law" src="assets/user_assets/images/Law/Divorce.png" height="69" width="69">
                             <p>Divorse Law</p>
                         </a>
                     </li>
@@ -125,7 +121,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Property Law -->
                     <li class="sc-item">
                         <a href="property-law">
-                            <img loading="lazy" alt="Property Law" src="assets/images/Law/property.png" height="69" width="69">
+                            <img loading="lazy" alt="Property Law" src="assets/user_assets/images/Law/property.png" height="69" width="69">
                             <p>Property Law</p>
                         </a>
                     </li>
@@ -133,7 +129,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Education Law -->
                     <li class="sc-item">
                         <a href="education-law">
-                            <img loading="lazy" alt="Education Law" src="assets/images/Law/education.png" height="69" width="69">
+                            <img loading="lazy" alt="Education Law" src="assets/user_assets/images/Law/education.png" height="69" width="69">
                             <p>Education Law</p>
                         </a>
                     </li>
@@ -141,7 +137,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Cyber Law -->
                     <li class="sc-item">
                         <a href="cyber-law">
-                            <img loading="lazy" alt="Cyber Law" src="assets/images/Law/cyber.png" height="69" width="69">
+                            <img loading="lazy" alt="Cyber Law" src="assets/user_assets/images/Law/cyber.png" height="69" width="69">
                             <p>Cyber Law</p>
                         </a>
                     </li>
@@ -149,7 +145,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Traffic Law -->
                     <li class="sc-item">
                         <a href="traffic-law">
-                            <img loading="lazy" alt="Traffic Law" src="assets/images/Law/traffic.png" height="69" width="69">
+                            <img loading="lazy" alt="Traffic Law" src="assets/user_assets/images/Law/traffic.png" height="69" width="69">
                             <p>Traffic Law</p>
                         </a>
                     </li>
@@ -157,7 +153,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Employment Law -->
                     <li class="sc-item">
                         <a href="employment-law">
-                            <img loading="lazy" alt="Employment Law" src="assets/images/Law/employment.png" height="69" width="69">
+                            <img loading="lazy" alt="Employment Law" src="assets/user_assets/images/Law/employment.png" height="69" width="69">
                             <p>Employment Law</p>
                         </a>
                     </li>
@@ -165,7 +161,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Business Law -->
                     <li class="sc-item">
                         <a href="#">
-                            <img loading="lazy" alt="Business Law" src="assets/images/Law/business.png" height="69" width="69">
+                            <img loading="lazy" alt="Business Law" src="assets/user_assets/images/Law/business.png" height="69" width="69">
                             <p>Business Law</p>
                         </a>
                     </li>
@@ -173,7 +169,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Affidavit Law -->
                     <li class="sc-item">
                         <a href="#">
-                            <img loading="lazy" alt="Affidavit Law" src="assets/images/Law/affidavit.png" height="69" width="69">
+                            <img loading="lazy" alt="Affidavit Law" src="assets/user_assets/images/Law/affidavit.png" height="69" width="69">
                             <p>Affidavit Law</p>
                         </a>
                     </li>
@@ -181,7 +177,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
                     <!-- Civil Law -->
                     <li class="sc-item">
                         <a href="#">
-                            <img loading="lazy" alt="Civil Law" src="assets/images/Law/Civil.png" height="69" width="69">
+                            <img loading="lazy" alt="Civil Law" src="assets/user_assets/images/Law/Civil.png" height="69" width="69">
                             <p>Civil Law</p>
                         </a>
                     </li>
@@ -205,7 +201,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
 <div class="swiper profile-card-slider">
     <div class="swiper-wrapper">
-        <?php foreach($rows as $topLawyers){ ?>
+        <?php foreach($lawyer as $topLawyers){ ?>
             <div class="swiper-slide profile-slide">
                 <div class="profile-card">
                     <div class="image">
@@ -244,11 +240,8 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
         <a href="lawyers.php" class="btn" id="lawyer-btn">View All Lawyers</a>
     </div>
 </div>
-
 </section>
 <!-- ==========Top Lawyers End========== -->
-
-
 
 
 <!-- ==========Case Study Start========== -->
@@ -262,7 +255,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
     <div class="case-studies">
         <div class="case-card">
             <div class="card-img">
-                <img src="assets/images/Law/case2.jpeg" alt="">
+                <img src="assets/user_assets/images/Law/case2.jpeg" alt="">
             </div>
             <div class="card-text">
                 <h2 class="case-text">Family Law Dispute</h2>
@@ -272,7 +265,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
         <div class="case-card">
             <div class="card-img">
-                <img src="assets/images/Law/case1.jpeg" alt="">
+                <img src="assets/user_assets/images/Law/case1.jpeg" alt="">
             </div>
             <div class="card-text">
                 <h2 class="case-text">Business Contract Review</h2>
@@ -282,7 +275,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
         <div class="case-card">
             <div class="card-img">
-                <img src="assets/images/Law/case3.jpeg" alt="">
+                <img src="assets/user_assets/images/Law/case3.jpeg" alt="">
             </div>
             <div class="card-text">
                 <h2 class="case-text">Criminal Defense Case</h2>
@@ -292,7 +285,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
         <div class="case-card">
             <div class="card-img">
-                <img src="assets/images/Law/case4.jpeg" alt="">
+                <img src="assets/user_assets/images/Law/case4.jpeg" alt="">
             </div>
             <div class="card-text">
                 <h2 class="case-text">Immigration Law Case</h2>
@@ -302,7 +295,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
         <div class="case-card">
             <div class="card-img">
-                <img src="assets/images/Law/case6.jpeg" alt="">
+                <img src="assets/user_assets/images/Law/case6.jpeg" alt="">
             </div>
             <div class="card-text">
                 <h2 class="case-text">Traffic Law Case</h2>
@@ -312,7 +305,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
         <div class="case-card">
             <div class="card-img">
-                <img src="assets/images/Law/case5.jpeg" alt="">
+                <img src="assets/user_assets/images/Law/case5.jpeg" alt="">
             </div>
             <div class="card-text">
                 <h2 class="case-text">Employment Dispute</h2>
@@ -325,13 +318,11 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 <!-- ==========Case Study End End========== -->
 
 
-
-
 <!-- ==========Why Us Start========== -->
 <section class="reveal">
     <div class="whyUs">
         <div class="phones">
-            <img src="assets/images/Extras/mobileApp.png" alt="Law App Screenshot">
+            <img src="assets/user_assets/images/Extras/mobileApp.png" alt="Law App Screenshot">
         </div>
 
         <div class="features">
@@ -347,14 +338,12 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 
             <div class="badges">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Get it on Google Play">
-                <img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
+                <img src="https://developer.apple.com/assets/user_assets/elements/badges/download-on-the-app-store.svg" alt="Download on the App Store">
             </div>
         </div>
     </div>
 </section>
 <!-- ==========Why Us End========== -->
-
-
 
 
 <!-- ==========Testimonials Start========== -->
@@ -373,7 +362,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 1 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (1).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (1).png" alt="User">
                     <h4>David Collins</h4>
                     <p>I got quick support on a traffic case. The lawyer was skilled and very responsive.</p>
                     <div class="bottom-row">
@@ -389,7 +378,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 2 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (2).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (2).png" alt="User">
                     <h4>Emily Thompson</h4>
                     <p>Consulted for a custody issue. Got great legal advice — clear and to the point.</p>
                     <div class="bottom-row">
@@ -405,7 +394,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 3 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (1).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (1).png" alt="User">
                     <h4>Michael Brooks</h4>
                     <p>Got fast help for a criminal case. The lawyer was efficient and very helpful.</p>
                     <div class="bottom-row">
@@ -421,7 +410,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 4 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (2).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (2).png" alt="User">
                     <h4>Sophia Harris</h4>
                     <p>Found a property lawyer fast. The consultation was easy, smooth, and helpful.</p>
                     <div class="bottom-row">
@@ -437,7 +426,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 5 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (1).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (1).png" alt="User">
                     <h4>Christopher White</h4>
                     <p>Got a great lawyer for a job issue. The matter was resolved super quickly.</p>
                     <div class="bottom-row">
@@ -453,7 +442,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 6 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (2).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (2).png" alt="User">
                     <h4>Jessica Green</h4>
                     <p>Used the service for an immigration matter. The process was smooth and stress-free.</p>
                     <div class="bottom-row">
@@ -469,7 +458,7 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
             <!-- Slide 7 -->
             <div class="swiper-slide">
                 <div class="testimonial-card">
-                    <img src="assets/images/Extras/user (1).png" alt="User">
+                    <img src="assets/user_assets/images/Extras/user (1).png" alt="User">
                     <h4>Brian Carter</h4>
                     <p>I needed urgent advice on business law. I got connected quickly and got clear guidance.</p>
                     <div class="bottom-row">
@@ -488,7 +477,6 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 <!-- ==========Testimonials End========== -->
 
 
-
 <!-- ==========Brands Start========== -->
 <div class="reveal">
     <div class="hiw-heading-v2">
@@ -497,25 +485,23 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
     </div>
     <div class="brands">
         <div class="brand">
-            <img src="assets/images/Extras/brand1.png" alt="" width="130px">
+            <img src="assets/user_assets/images/Extras/brand1.png" alt="" width="130px">
         </div>
 
         <div class="brand">
-            <img src="assets/images/Extras/brand2.png" alt="">
+            <img src="assets/user_assets/images/Extras/brand2.png" alt="">
         </div>
 
         <div class="brand">
-            <img src="assets/images/Extras/brand3.png" alt="">
+            <img src="assets/user_assets/images/Extras/brand3.png" alt="">
         </div>
 
         <div class="brand">
-            <img src="assets/images/Extras/brand4.png" alt="">
+            <img src="assets/user_assets/images/Extras/brand4.png" alt="">
         </div>
     </div>
 </div>
 <!-- ==========Brands Ends========== -->
-
-
 
 
 <!-- ==========HOw It Works Start========== -->
@@ -548,8 +534,6 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 <!-- ==========HOw It Works End========== -->
 
 
-
-
 <!-- ==========Form Start========== -->
 <div class="form reveal" id="Contact">
     <div class="form-container">
@@ -574,7 +558,5 @@ $rows = mysqli_fetch_all($lawyersData, MYSQLI_ASSOC);
 <!-- ==========Form End========== -->
 
 
-
-
 <!-- ==========Footer Linked========== -->
-<?php include_once("includes/footer.php") ?>
+<?php include_once("includes/layouts/footer.php") ?>

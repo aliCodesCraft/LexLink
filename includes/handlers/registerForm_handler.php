@@ -1,23 +1,23 @@
 <?php
-// 🔔 Messages
+// Messages
 $error = "";
 $success = "";
 $showLogin = false;
 $showRegister = false;
 
 
-// 🔐 Form Handling Logic
+// Form Handling Logic
 if (isset($_POST['btnUserRegister']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $userName = $_POST['name'];
     $userEmail = $_POST['email'];
     $userPassword = $_POST['password'];
     $userConfirmPassword = $_POST['confirmpassword'];
 
-    // 🔒 Escape inputs
+    // Escape inputs
     $userEmail = mysqli_real_escape_string($connection, $userEmail);
     $userName = mysqli_real_escape_string($connection, $userName);
 
-    // 🔍 Check if email already exists
+    // Check if email already exists
     $checkQuery = "SELECT * FROM users WHERE user_email = '$userEmail'";
     $checkResult = mysqli_query($connection, $checkQuery);
 

@@ -42,10 +42,10 @@ crossBtn.addEventListener('click', () => {
  
  const imageElement = document.getElementById("slider-image");
   const imageUrls = [
-    "assets/images/Hero-Baner/hero-1.png",
-    "assets/images/Hero-Baner/hero-2.png",
-    "assets/images/Hero-Baner/hero-3.png",
-    "assets/images/Hero-Baner/hero-4.png",
+    "assets/user_assets/images/Hero-Baner/hero-1.png",
+    "assets/user_assets/images/Hero-Baner/hero-2.png",
+    "assets/user_assets/images/Hero-Baner/hero-3.png",
+    "assets/user_assets/images/Hero-Baner/hero-4.png",
   ];
 
   let current = 0;

@@ -4,7 +4,7 @@
     <div class="footer-row">
 
       <div class="footer-col">
-        <img src="assets/images/Logos/logoWhite.png" alt="" width="120px" height="120px">
+        <img src="/LexLink/assets/user_assets/images/Logos/logoWhite.png" alt="" width="120px" height="120px">
         <p>A modern solution for legal services — trusted, fast, and efficient.</p>
       </div>
 
@@ -47,9 +47,9 @@
 
 
 
-<script src="assets/js/sweetalert2.min.js.js"></script>
+<script src="/LexLink/assets/user_assets/js/sweetalert2.min.js.js"></script>
 
-<script src="assets/js/swiper-bundle.min.js"></script>
+<script src="/LexLink/assets/user_assets/js/swiper-bundle.min.js"></script>
 <script>
   // Wait until DOM is fully ready
   document.addEventListener("DOMContentLoaded", function () {
@@ -133,8 +133,8 @@
   });
 </script>
 
-<script src="assets/js/formSubmiosn.js"></script>
-<script src="assets/js/script.js"></script>
+<script src="/LexLink/assets/user_assets/js/formSubmiosn.js"></script>
+<script src="/LexLink/assets/user_assets/js/script.js"></script>
 </body>
 
 </html>
