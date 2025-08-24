@@ -3,11 +3,13 @@
   <div class="footer-container">
     <div class="footer-row">
 
+      <!-- Logo and description -->
       <div class="footer-col">
-        <img src="/LexLink/assets/user_assets/images/Logos/logoWhite.png" alt="" width="120px" height="120px">
+        <img src="/LexLink/assets/images/logos/logoWhite.png" alt="" width="120px" height="120px">
         <p>A modern solution for legal services — trusted, fast, and efficient.</p>
       </div>
 
+      <!-- Quick navigation links -->
       <div class="footer-col">
         <h4>Quick Links</h4>
         <ul>
@@ -18,6 +20,7 @@
         </ul>
       </div>
 
+      <!-- More navigation links -->
       <div class="footer-col">
         <h4>More</h4>
         <ul>
@@ -27,6 +30,7 @@
         </ul>
       </div>
 
+      <!-- Social media icons -->
       <div class="footer-col">
         <h4>Follow Us</h4>
         <div class="footer-socials">
@@ -40,101 +44,29 @@
     </div>
   </div>
 </footer>
+
+<!-- Footer bottom text -->
 <div class="footer-bottom">
   <p>&copy; 2025 LexLink. All Rights Reserved.</p>
 </div>
 
+<!-- JS Libraries and Scripts -->
 
+<!-- jQuery library -->
+<script src="/LexLink/assets/js/jquery.js"></script>
 
+<!-- SweetAlert2 library for alert modals -->
+<script src="/LexLink/assets/js/sweetalert2.min.js.js"></script>
 
-<script src="/LexLink/assets/user_assets/js/sweetalert2.min.js.js"></script>
-
-<script src="/LexLink/assets/user_assets/js/swiper-bundle.min.js"></script>
-<script>
-  // Wait until DOM is fully ready
-  document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-      if (window.profileCardSwiper) profileCardSwiper.update();
-      if (window.swiper) swiper.update();
-    }, 300); // Delay ensures layout is settled
-  });
-</script>
-
-
+<!-- Swiper library for sliders/carousels -->
+<script src="/LexLink/assets/js/swiper-bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
-<!-- Swiper Activation -->
-<script>
-  const profileCardSwiper = new Swiper(".profile-card-slider", {
-    slidesPerView: 4,
-    spaceBetween: 0,
-    loop: true,
-    autoplay: {
-      delay: 2000, // 2 seconds
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".profile-pagination",
-      clickable: true,
-    },
-    navigation: {
-      nextEl: ".profile-button-next",
-      prevEl: ".profile-button-prev",
-    },
-    breakpoints: {
-      1300: {
-        slidesPerView: 4
-      },
-      992: {
-        slidesPerView: 3
-      },
-      668: {
-        slidesPerView: 2
-      },
-      320: {
-        slidesPerView: 1
-      }
-    }
-  });
-</script>
+<!-- Form submission handling -->
+<script src="/LexLink/assets/js/formSubmiosn.js"></script>
 
-
-
-<!-- Testimonials -->
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    slidesPerView: 3,
-    spaceBetween: 10,
-    autoplay: {
-      delay: 2500,
-      disableOnInteraction: false,
-    },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-      320: { // For small screens (mobile)
-        slidesPerView: 1,
-      },
-      480: { // Slightly larger screens
-        slidesPerView: 1,
-      },
-      668: { // Tablets
-        slidesPerView: 2,
-      },
-      1024: { // Laptops
-        slidesPerView: 3,
-      },
-      1200: { // Large screens
-        slidesPerView: 4,
-      }
-    }
-  });
-</script>
-
-<script src="/LexLink/assets/user_assets/js/formSubmiosn.js"></script>
-<script src="/LexLink/assets/user_assets/js/script.js"></script>
+<!-- Custom JS: sliders, modals, counters, and other interactions -->
+<script src="/LexLink/assets/js/script.js"></script>
 </body>
 
 </html>

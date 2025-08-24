@@ -17,7 +17,7 @@ include_once("includes/handlers/loginForm_handler.php");
             <!-- Error Messege -->
             <?php if (!empty($loginError)): ?>
                 <div style="color: red; text-align:center; margin-bottom: 10px;">
-                    <?= $loginError ?>
+                    <?php echo $loginError ?>
                 </div>
             <?php endif; ?>
 

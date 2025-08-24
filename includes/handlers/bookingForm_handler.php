@@ -48,17 +48,41 @@ if (isset($_POST['btnBookAppoitment']) && $_SERVER['REQUEST_METHOD'] == 'POST') 
     }
 }
 
+
+
+
 // Fetch latest status from DB
 $status = '';
 $userId = $_SESSION['userID'];
 
 if ($userId && $LawyerID) {
-    $getStatus = "SELECT `appointment_status` FROM `appointments` WHERE `booked_lawyer` = '$LawyerID' AND `booker_id` = '$userId' LIMIT 1";
+    $getStatus = "SELECT `appointment_id`,`appointment_status` 
+              FROM `appointments` 
+              WHERE `booked_lawyer` = '$LawyerID' 
+              AND `booker_id` = '$userId' 
+              ORDER BY appointment_id DESC 
+              LIMIT 1";
 
     $statusResult = mysqli_query($connection, $getStatus);
     $result = mysqli_fetch_assoc($statusResult);
-
+    
     if ($result) {
         $status = $result['appointment_status'];
+        $appointmentID = $result['appointment_id'];
+    }
+}
+
+if(isset($_GET['cancelID'])){
+    $id = intval($_GET['cancelID']);
+    $update = "UPDATE appointments SET appointment_status='cancelled' WHERE appointment_id=$id";
+    if(mysqli_query($connection, $update)){
+
+        // Redirect to reload the page with updated appointment status
+        echo "
+        <script>
+            window.location.href = 'lawyer-profile.php?ID=".$LawyerID."';
+        </script>
+        ";
+        exit();
     }
 }

@@ -1,21 +1,32 @@
 <?php
-include_once("includes/header.php");
-include_once("includes/config.php");
+// Page title
+$title = "Dashboard";
+
+// Include header,auth & sucess
+include_once("lawyer_includes/lawyer_layouts/header.php");
+include_once("lawyer_includes/lawyer_utils/auth.php");
+include_once("lawyer_includes/lawyer_utils/sucess.php");
+
 ?>
 
-<?php
-//  Geting Total Counts
-$getTotal = "SELECT COUNT(*) AS total, 
-            SUM(CASE WHEN appointment_status = 'pending' THEN 1 ELSE 0 END) AS pending, 
-            SUM(CASE WHEN appointment_status = 'completed' THEN 1 ELSE 0 END) AS completed, 
-            SUM(CASE WHEN appointment_status = 'rejected' THEN 1 ELSE 0 END) AS rejected, 
-            COUNT(DISTINCT booker_id) AS clients 
-        FROM appointments WHERE booked_lawyer = 2";
 
+<?php
+// Query to get appointment stats & client count 
+// Count appointments by status (1 = match, 0 = no match)
+$getTotal = "SELECT 
+            COUNT(*) AS total,
+            COALESCE(SUM(CASE WHEN appointment_status = 'pending' THEN 1 ELSE 0 END), 0) AS pending, 
+            COALESCE(SUM(CASE WHEN appointment_status = 'completed' THEN 1 ELSE 0 END), 0) AS completed, 
+            COALESCE(SUM(CASE WHEN appointment_status = 'rejected' THEN 1 ELSE 0 END), 0) AS rejected, 
+            COALESCE(COUNT(DISTINCT booker_id), 0) AS clients 
+        FROM appointments 
+        WHERE booked_lawyer = '$lawyerID'";
+
+// Run query & fetch data
 $result = mysqli_query($connection, $getTotal);
 $data = mysqli_fetch_assoc($result);
 
-// Assign values
+// Assign values for stats
 $total     = $data['total'];
 $pending   = $data['pending'];
 $completed = $data['completed'];
@@ -24,43 +35,87 @@ $clients   = $data['clients'];
 ?>
 
 <?php
-// Geting Recents Records Through Date-Time
-$getRecents = "SELECT * FROM appointments INNER JOIN users on appointments.booker_id = users.user_id WHERE booked_lawyer = 2 ORDER BY appointments.booker_schedule DESC LIMIT 5";
+// Query to get latest 5 appointments with user info
+$getRecents = "SELECT * FROM appointments 
+INNER JOIN users ON appointments.booker_id = users.user_id 
+WHERE booked_lawyer = '$lawyerID' 
+ORDER BY appointments.booker_schedule DESC 
+LIMIT 5";
 
+// Run query
 $recentsResults = mysqli_query($connection, $getRecents);
 ?>
 
 
 
+<!-- Styling recents table -->
 <style>
-    .table-bordered td {
-        padding: 10px;
-        text-align: center;
+    .table th,
+    .table td {
+        border: 1px solid #dee2e6;
     }
 
+    /* Status colors */
     .status.pending {
-        background-color: orangered;
-        color: white;
-        padding: 20px;
+        background-color: #ffb84d !important;
+        color: #663300 !important;
+        font-weight: bolder;
     }
 
-    .status.completed {
-        background-color: green;
-        color: white;
-        padding: 20px;
+    .status.accepted {
+        background-color: #90ee90 !important;
+        color: #006400 !important;
+        font-weight: bolder;
     }
 
     .status.rejected {
-        background-color: red;
-        color: white;
-        padding: 20px;
+        background-color: #ffb3b3;
+        color: #800000 !important;
+        font-weight: bolder;
+    }
+
+    .status.cancelled {
+        background-color: #ff6c6c;
+        color: #660000 !important;
+        font-weight: bolder;
+    }
+
+    .status.completed {
+        background-color: #90ee90;
+        color: #006400 !important;
+        font-weight: bolder;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .status {
+        padding: 0.25rem 0.5rem;
+        font-weight: bolder;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+    }
+
+    .table td,
+    .table th {
+        padding: 0.25rem 0.5rem;
+        vertical-align: middle;
+    }
+
+    .modal-header .btn-close {
+        filter: invert(1);
     }
 </style>
 
-<!-- Begin Page Content -->
+<!-- Begin page content -->
 <div class="container-fluid">
 
-    <!-- Page Heading -->
+    <!-- Page heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Lawyer Dashboard</h1>
         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
@@ -68,9 +123,9 @@ $recentsResults = mysqli_query($connection, $getRecents);
         </a>
     </div>
 
-    <!-- Top Row - Stats Cards -->
+    <!-- Top row - stats cards -->
     <div class="row">
-        <!-- Total Appointments -->
+        <!-- Total appointments -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
@@ -81,7 +136,7 @@ $recentsResults = mysqli_query($connection, $getRecents);
             </div>
         </div>
 
-        <!-- Pending Appointments -->
+        <!-- Pending appointments -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
@@ -92,7 +147,7 @@ $recentsResults = mysqli_query($connection, $getRecents);
             </div>
         </div>
 
-        <!-- Completed Appointments -->
+        <!-- Completed appointments -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-success shadow h-100 py-2">
                 <div class="card-body">
@@ -103,7 +158,7 @@ $recentsResults = mysqli_query($connection, $getRecents);
             </div>
         </div>
 
-        <!-- Total Clients -->
+        <!-- Total clients -->
         <div class="col-xl-3 col-md-6 mb-4">
             <div class="card border-left-info shadow h-100 py-2">
                 <div class="card-body">
@@ -115,10 +170,10 @@ $recentsResults = mysqli_query($connection, $getRecents);
         </div>
     </div>
 
-    <!-- Main Row -->
+    <!-- Main row -->
     <div class="row">
 
-        <!-- Recent Appointments Table -->
+        <!-- Recents appointments table -->
         <div class="col-lg-8 mb-4">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
@@ -126,38 +181,36 @@ $recentsResults = mysqli_query($connection, $getRecents);
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table table-bordered" style="width:100%; font-size:15px;">
-
-                            <thead>
+                        <table style="text-align:center;" class="table table-bordered table-striped" width="100%" cellspacing="0">
+                            <thead class="text-white" style="background:#0a2342;">
                                 <tr>
                                     <th>Client Name</th>
                                     <th>Client Email</th>
                                     <th>Date</th>
                                     <th>Time</th>
-                                    <th>Booked By</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody>
+
                                 <?php foreach ($recentsResults as $recents) { ?>
                                     <?php
-                                    // Seprating Date Time
+                                    // Seprating date-time
                                     $datetime = $recents['booker_schedule'];
 
-                                    // convert & format datetime
+                                    // convert & format date-time
                                     $date = date("d-m-Y", strtotime($datetime));
                                     $time = date("h:i A", strtotime($datetime));
 
                                     ?>
                                     <tr>
-                                        <td><?php echo $recents['booker_name']; ?></td>
-                                        <td><?php echo $recents['booker_email']; ?></td>
-                                        <td><?php echo $date; ?></td>
-                                        <td><?php echo $time; ?></td>
-                                        <td><?php echo $recents['user_email']; ?></td>
-                                        <td class="status <?php echo $recents['appointment_status']; ?>"><?php echo $recents['appointment_status']; ?></td>
-
+                                        <td class="status <?php echo $recents['appointment_status']; ?>"><?php echo $recents['booker_name']; ?></td>
+                                        <td class="status <?php echo $recents['appointment_status']; ?>"><?php echo $recents['booker_email']; ?></td>
+                                        <td class="status <?php echo $recents['appointment_status']; ?>"><?php echo $date; ?></td>
+                                        <td class="status <?php echo $recents['appointment_status']; ?>"><?php echo $time; ?></td>
+                                        <td class="status <?php echo $recents['appointment_status']; ?>"><?php echo $recents['appointment_status'] ?></td>
                                     </tr>
+
                                 <?php } ?>
                             </tbody>
                         </table>
@@ -166,7 +219,7 @@ $recentsResults = mysqli_query($connection, $getRecents);
             </div>
         </div>
 
-        <!-- Status Summary -->
+        <!-- Status summary -->
         <div class="col-lg-4 mb-4">
             <div class="card shadow">
                 <div class="card-header py-3">
@@ -183,10 +236,10 @@ $recentsResults = mysqli_query($connection, $getRecents);
         </div>
     </div>
 </div>
-
-<!-- /.container-fluid -->
-
 </div>
 
 
-<?php include_once("includes/footer.php") ?>
+<?php
+// Include footer 
+include_once("lawyer_includes/lawyer_layouts/footer.php");
+?>

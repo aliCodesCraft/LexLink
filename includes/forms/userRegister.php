@@ -20,14 +20,14 @@ include_once("includes/handlers/registerForm_handler.php"); ?>
             <!-- Error Messege -->
             <?php if (!empty($error)): ?>
                 <div style="color: red; text-align:center; margin-bottom: 10px;">
-                    <?= $error ?>
+                    <?php echo $error ?>
                 </div>
             <?php endif; ?>
 
             <!-- Success Messege -->
             <?php if (!empty($success)): ?>
                 <div style="color: green; text-align:center; margin-bottom: 10px;">
-                    <?= $success ?>
+                    <?php echo $success ?>
                 </div>
             <?php endif; ?>
 

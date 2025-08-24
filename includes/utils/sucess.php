@@ -8,7 +8,7 @@ if (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true): ?
         document.addEventListener("DOMContentLoaded", function() {
             Swal.fire({
                 title: 'Login Successful!',
-                text: 'Welcome <?= $_SESSION['username'] ?> 🎉',
+                text: 'Welcome <?php echo $_SESSION['username'] ?> 🎉',
                 icon: 'success',
                 confirmButtonText: 'Continue',
                 background: '#0A2342',

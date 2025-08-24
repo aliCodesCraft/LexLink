@@ -1,17 +1,17 @@
 <?php
-// Initialize session, authentication, configuration, header and form hanlder
+// Initialize session, auth, config, header, and form handler
 include_once("../includes/utils/session.php");
 include_once("../includes/config/config.php");
 include_once("../includes/utils/auth.php");
 include_once("../includes/layouts/header.php");
 include_once("../includes/handlers/updateForm_handler.php");
 
+// Get current user data from session
 $userID = $_SESSION['userID'];
 $userName = $_SESSION['username'];
 $userEmail = $_SESSION['useremail'];
 
-
-// Form Handling Logic
+// Handle form submission
 if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $userName = $_POST['name'];
     $userEmail = $_POST['email'];
@@ -19,7 +19,10 @@ if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $userConfirmPassword = $_POST['confirmpassword'];
 
     // Check if email already exists for other users
-    $checkQuery = "SELECT * FROM users WHERE user_email = '$userEmail' AND user_id != '$userID'";
+    $checkQuery = "SELECT * FROM `users` 
+    WHERE user_email = '$userEmail' AND user_id != '$userID'";
+
+    // Running query
     $checkResult = mysqli_query($connection, $checkQuery);
 
     if (mysqli_num_rows($checkResult) > 0) {
@@ -27,6 +30,7 @@ if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif ($userPassword !== $userConfirmPassword) {
         $error = "❌ Passwords do not match!";
     } else {
+        // Hash password and update user data
         $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
 
         $updateQuery = "UPDATE users 
@@ -37,8 +41,6 @@ if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if ($updateResult) {
             $success = "✅ Updation successful!";
-
-            // Update session values
             $_SESSION['username'] = $userName;
             $_SESSION['useremail'] = $userEmail;
         } else {
@@ -46,11 +48,9 @@ if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
-
 ?>
 
-<!-- Form Container Modal -->
+<!-- Update Profile Form Modal -->
 <div class="blur-form-background" id="user-register-form" style="display: block;">
     <div class="blur-close-btn">
         <a href="/LexLink/index.php" style="color: goldenrod;">
@@ -59,47 +59,54 @@ if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 
     <div class="blur-wrapper">
-
         <form class="blur-form-container" method="POST">
             <h2>Update Profile</h2>
 
-            <!-- Error Messege -->
+            <!-- Error message -->
             <?php if (!empty($error)): ?>
                 <div style="color: red; text-align:center; margin-bottom: 10px;">
-                    <?= $error ?>
+                    <?php echo $error ?>
                 </div>
             <?php endif; ?>
 
-            <!-- Success Messege -->
+            <!-- Success message -->
             <?php if (!empty($success)): ?>
                 <div style="color: green; text-align:center; margin-bottom: 10px;">
-                    <?= $success ?>
+                    <?php echo $success ?>
                 </div>
             <?php endif; ?>
 
+            <!-- Name field -->
             <div class="blur-input-group">
                 <i class="ri-user-line"></i>
                 <input type="text" placeholder="Your Name"  name="name" value="<?php echo $userName; ?>" />
             </div>
 
+            <!-- Email field -->
             <div class="blur-input-group">
                 <i class="ri-mail-line"></i>
                 <input type="email" placeholder="Your Email"  name="email" value="<?php echo $userEmail; ?>" />
             </div>
 
+            <!-- Password field -->
             <div class="blur-input-group">
                 <i class="ri-lock-2-line"></i>
                 <input type="password" placeholder="Your Password"  name="password" />
             </div>
 
+            <!-- Confirm Password field -->
             <div class="blur-input-group">
                 <i class="ri-lock-2-line"></i>
                 <input type="password" placeholder="Confirm Password"  name="confirmpassword" />
             </div>
 
+            <!-- Submit button -->
             <input type="submit" value="Update" class="blur-btn" name="btnUserUpdate" />
-
         </form>
     </div>
 </div>
-<?php include_once("../includes/layouts/footer.php"); ?>
+
+<?php
+// Include footer
+include_once("../includes/layouts/footer.php");
+?>
