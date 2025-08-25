@@ -2,17 +2,20 @@
 // Page title
 $title = "Dashboard";
 
+// Include initialization (session + database connection)
+include_once("lawyer_includes/lawyer_utils/init.php");
 // Include header,auth & sucess
+
 include_once("lawyer_includes/lawyer_layouts/header.php");
 include_once("lawyer_includes/lawyer_utils/auth.php");
 include_once("lawyer_includes/lawyer_utils/sucess.php");
 
 ?>
 
-
 <?php
 // Query to get appointment stats & client count 
 // Count appointments by status (1 = match, 0 = no match)
+// COALESCE() ensures that if SUM() or COUNT() returns NULL, it will be replaced with 0
 $getTotal = "SELECT 
             COUNT(*) AS total,
             COALESCE(SUM(CASE WHEN appointment_status = 'pending' THEN 1 ELSE 0 END), 0) AS pending, 
@@ -22,7 +25,7 @@ $getTotal = "SELECT
         FROM appointments 
         WHERE booked_lawyer = '$lawyerID'";
 
-// Run query & fetch data
+// Runing query & fetch data
 $result = mysqli_query($connection, $getTotal);
 $data = mysqli_fetch_assoc($result);
 

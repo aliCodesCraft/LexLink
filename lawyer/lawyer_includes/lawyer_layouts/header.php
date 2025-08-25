@@ -1,13 +1,4 @@
 <?php
-// Starting session
-if (session_status() === PHP_SESSION_NONE) {
-    ini_set("session.cookie_path", "/");
-    session_start();
-}
-
-// Connecting Database
-$connection = mysqli_connect("localhost", "root", "", "LexLink");
-
 // Getting Lawyer through ID
 $lawyerID = $_SESSION['lawyerID'];
 $getLawyer = "SELECT * FROM `lawyers` WHERE `lawyer_id` ='$lawyerID' ";
@@ -88,7 +79,7 @@ $lawyer = mysqli_fetch_assoc($lawyerResult);
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/LexLink">
                 <div class="sidebar-brand-icon" style="margin-top: 5rem !important;">
                     <img src="lawyer_assets/img/logoWhite.png" alt="" width="100%">
                 </div>

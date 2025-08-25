@@ -1,14 +1,8 @@
 <?php
 // Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-     ini_set("session.cookie_path", "/");
-    session_start();
-}
+include_once("init.php");
 
-// Include DB connection
-$connection = mysqli_connect("localhost", "root", "", "LexLink");
-
-// Agar session me lawyerID set hi nahi hai to login page bhej do
+// Redirect to login pgae if session role !== lawyer
 if (!isset($_SESSION['lawyerID']) || !isset($_SESSION['role']) || $_SESSION['role'] !== 'lawyer') {
     echo "<script>window.location.href='/LexLink/lawyer/lawyer-login.php?error=unauthorized'</script>";
     exit();

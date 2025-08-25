@@ -3,7 +3,7 @@
 session_start();
 
 // Connecting Database
-$connection = mysqli_connect("localhost", "root", "", "LexLink");
+include_once("lawyer_includes/lawyer_utils/init.php");
 
 
 // Messages

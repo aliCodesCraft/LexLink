@@ -1,6 +1,6 @@
 <?php
-// Connecting Database
-$connection = mysqli_connect("localhost", "root", "", "LexLink");
+// Include initialization (session + database connection)
+include_once("lawyer_includes/lawyer_utils/init.php");
 
 // Messages
 $error = "";

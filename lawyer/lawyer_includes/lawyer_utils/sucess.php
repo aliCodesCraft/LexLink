@@ -1,9 +1,6 @@
 <?php
 // Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    ini_set("session.cookie_path", "/");
-    session_start();
-}
+include_once("init.php");
 
 if (isset($_SESSION['login_success']) && $_SESSION['login_success'] === true): ?>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

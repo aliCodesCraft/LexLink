@@ -1,6 +1,13 @@
 <?php
 // Include form hanlder
 include_once("lawyer_includes/lawyer_handlers/lawyerLogin_handler.php");
+
+// Account regitser success message
+
+if(isset($_GET['done'])){
+  $success = $_GET['done'];
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
