@@ -24,7 +24,7 @@ include_once("includes/handlers/loginForm_handler.php");
 
             <div class="blur-input-group">
                 <i class="ri-mail-line"></i>
-                <input type="email" placeholder="Your Email" name="loginemail" required />
+                <input type="email" placeholder="Your Email" name="loginemail" required value="<?php echo $_POST['loginemail']; ?>" />
             </div>
 
             <div class="blur-input-group">

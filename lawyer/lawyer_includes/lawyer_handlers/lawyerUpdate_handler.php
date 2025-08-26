@@ -7,8 +7,13 @@ $success = "";
 
 $lawyerID = $_SESSION['lawyerID'];
 // Fetch old profile image
-$getLawyerImage = "SELECT `lawyer_picture` FROM `lawyers` WHERE `lawyer_id` = '$lawyerID'";
+$getLawyerImage = "SELECT `lawyer_picture` 
+FROM `lawyers` WHERE `lawyer_id` = '$lawyerID'";
+
+// Runing query
 $imageResult = mysqli_query($connection, $getLawyerImage);
+
+// Converting in assoc
 $row = mysqli_fetch_assoc($imageResult);
 $oldImageName = $row['lawyer_picture'];
 
@@ -30,48 +35,71 @@ if (isset($_POST['btnUpdateLawyer']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $updateImageUploadPath = "../lawyer_assets/uploads/profilepic";
     $allowedPicExtensions = ["png", "jpg", "jpeg", "webp", "avif"];
 
-    // If selected new picture
-    if (!empty($updateImageName)) {
+    // If a new picture is selected
+    if (!empty($updateImage['name'])) {
 
         // Extract extension
-        $extension = pathinfo($updateImageName, PATHINFO_EXTENSION);
+        $extension = pathinfo($updateImage['name'], PATHINFO_EXTENSION);
 
-        // Rename picture with email format
-        $updateImageName = $updateEmail . '.' . $extension;
+        // Rename picture using NEW email
+        $newImageName = $updateEmail . '.' . $extension;
 
-        // Check validation
+        // Validate allowed extensions
         if (in_array(strtolower($extension), $allowedPicExtensions)) {
 
-            // Replacing and moving picture
-            $uploadPath = $updateImageUploadPath . '/' . $updateImageName;
-            if (!move_uploaded_file($updateImagePath, $uploadPath)) {
+            $uploadPath = $updateImageUploadPath . '/' . $newImageName;
+
+            // DELETE OLD IMAGE
+            $oldImagePath = $updateImageUploadPath . '/' . $oldImageName;
+            if (!empty($oldImageName) && file_exists($oldImagePath)) {
+                unlink($oldImagePath);
+            }
+
+            // MOVE NEW IMAGE
+            if (!move_uploaded_file($updateImage['tmp_name'], $uploadPath)) {
                 $_SESSION['error'] = "❌ Profile picture upload failed!";
             }
+
+            $updateImageName = $newImageName; // new file for DB
+
         } else {
             $_SESSION['error'] = "❌ Invalid profile picture format! Allowed: png, jpg, jpeg, webp, avif";
         }
     } else {
-        // Use old picture if no new picture uploaded
+        // If no new picture uploaded → keep old one
         $updateImageName = $oldImageName;
     }
 
+
+
     // Email check for other lawyers
     if (empty($error)) {
-        $checkQuery = "SELECT * FROM `lawyers` WHERE lawyer_email = '$updateEmail' AND lawyer_id != '$lawyerID'";
+        $checkQuery = "SELECT * FROM `lawyers` 
+        WHERE lawyer_email = '$updateEmail' AND lawyer_id != '$lawyerID'";
 
         // Runing query
         $checkResult = mysqli_query($connection, $checkQuery);
 
-
         if (mysqli_num_rows($checkResult) > 0) {
             $_SESSION['error'] = "⚠️ Email already exists!";
-        } elseif ($updatePassword !== $updateConfirmPassword) {
-            $_SESSION['error'] = "❌ Passwords do not match!";
-        }
+        } else {
 
-        // Hashing password
-        else {
-            $hashedPassword = password_hash($updatePassword, PASSWORD_DEFAULT);
+            // Change password only if new password entered
+            if (!empty($updatePassword) && !empty($updateConfirmPassword)) {
+                if ($updatePassword === $updateConfirmPassword) {
+                    $hashedPassword = password_hash($updatePassword, PASSWORD_DEFAULT);
+                } else {
+                    $_SESSION['error'] = "❌ Passwords do not match!";
+                    echo "<script>window.location.href='page/update-profile.php';</script>";
+                    exit();
+                }
+            } else {
+                // Keep old password if no new password entered
+                $getOldPassword = "SELECT lawyer_password FROM lawyers WHERE lawyer_id='$lawyerID'";
+                $passResult = mysqli_query($connection, $getOldPassword);
+                $passRow = mysqli_fetch_assoc($passResult);
+                $hashedPassword = $passRow['lawyer_password'];
+            }
 
             // Update lawyer query
             $updateQuery = "UPDATE lawyers SET 
@@ -84,6 +112,7 @@ if (isset($_POST['btnUpdateLawyer']) && $_SERVER["REQUEST_METHOD"] == "POST") {
             if ($updateResult) {
                 // Success message stored in session
                 $_SESSION['success'] = "✅ Profile updated successfully!";
+                $_SESSION['lawyerName'] = $updateName;
 
                 echo "<script>window.location.href='page/update-profile.php';</script>";
                 exit();

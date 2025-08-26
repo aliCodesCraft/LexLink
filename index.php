@@ -11,15 +11,11 @@ include_once("includes/config/config.php");
 
 
 <?php
-// Fetching promoted lawyers
-$getLawyers = "
-    SELECT lawyers.*, categories.category_name
-    FROM lawyers
-    INNER JOIN categories 
-        ON lawyers.lawyer_category = categories.category_id
-    WHERE lawyers.lawyer_status = 'active' 
-      AND lawyers.is_lawyer_promoted = 1
-";
+// Fetching promoted lawyers with category and city
+$getLawyers = "SELECT * FROM `lawyers` 
+INNER JOIN `categories` ON lawyers.lawyer_category = categories.category_id 
+INNER JOIN `cities` on lawyers.lawyer_city = cities.city_id
+WHERE `lawyer_status` = 'active' AND `is_lawyer_promoted` = 1";
 
 // Runing query
 $lawyerData = mysqli_query($connection, $getLawyers);
@@ -219,7 +215,7 @@ include_once("includes/forms/userRegister.php");
                         </div>
                         <div class="text-data">
                             <span class="name"><?php echo $topLawyers['lawyer_name']; ?></span>
-                            <span class="job"><?php echo $topLawyers['category_name']; ?></span>
+                            <span class="job"><?php echo $topLawyers['category_name']; ?> | <?php echo $topLawyers['city_name'] ?> </span>
                         </div>
                         <div class="media-buttons rating">
                             <i class="ri-star-fill"></i>

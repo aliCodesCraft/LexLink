@@ -10,7 +10,7 @@ include_once("lawyer_includes/lawyer_utils/init.php");
 $error = "";
 $success = "";
 
-// If redirected after registration, get success message
+// If redirected after auth, get error message
 if (isset($_GET['error']) && $_GET['error'] === 'unauthorized') {
   echo "
     <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
@@ -31,7 +31,7 @@ if (isset($_GET['error']) && $_GET['error'] === 'unauthorized') {
 
 
 
-// Login form submit check
+// Proceed only if form submitted
 if (isset($_POST["btnLogin"])) {
 
   // Get email & password from form

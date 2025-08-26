@@ -19,13 +19,11 @@ $categoryResult = mysqli_query($connection, "SELECT * FROM categories");
 $cityResult = mysqli_query($connection, "SELECT * FROM cities");
 
 // Base query to get active lawyers
-$getLawyers = "
-    SELECT lawyers.*, categories.category_name, cities.city_name
-    FROM lawyers
-    INNER JOIN categories ON lawyers.lawyer_category = categories.category_id
-    INNER JOIN cities ON lawyers.lawyer_city = cities.city_id
-    WHERE lawyers.lawyer_status = 'active'
-";
+// Fetching promoted lawyers
+$getLawyers = "SELECT * FROM `lawyers` 
+INNER JOIN `categories` ON lawyers.lawyer_category = categories.category_id 
+INNER JOIN `cities` on lawyers.lawyer_city = cities.city_id
+WHERE `lawyer_status` = 'active'";
 
 // Apply filters
 if ($searchCity) $getLawyers .= " AND cities.city_id = " . intval($searchCity);

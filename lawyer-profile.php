@@ -12,7 +12,7 @@ include_once("includes/layouts/header.php");
 <!-- Fetch lawyer details based on selected ID -->
 <?php
 // Get lawyer ID from URL
-$LawyerID = $_GET['ID'] ?? 0; 
+$LawyerID = $_GET['ID']; 
 
 // Booking form handler
 include_once("includes/handlers/bookingForm_handler.php");
@@ -89,7 +89,8 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
 
 
 <!-- Lawyer profile content start -->
-<div class="profile-banner"></div>
+<div class="profile-banner">
+</div>
 
 <div class="profile-container">
     <div class="profile-header">
@@ -121,7 +122,7 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
                         Appointment cancelled <i class="fas fa-times-square"></i>
                     </a>
                     <a href="#" id="bookAgainBtn" class="btn-primary" style="margin-top:5px; background:#007bff; color:white;">
-                        Book Again
+                        Book Again <i class="fa-solid fa-rotate-left"></i>
                     </a>
 
                 <?php elseif ($status == 'accepted'): ?>
@@ -142,7 +143,7 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
                     </a>
                     <br>
                     <a href="#" id="bookAgainBtn" class="btn-primary" style="margin-top:5px; background:#007bff; color:white;">
-                        Book Again
+                        Book Again <i class="fa-solid fa-rotate-left"></i>
                     </a>
 
                 <?php elseif ($status == 'rejected'): ?>
@@ -185,7 +186,7 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
             <div class="review-card">
                 <div class="review-author">Emily R.</div>
                 <div class="stars">★★★★★</div>
-                <p>Mr. Blake was professional, compassionate, and incredibly skilled. He saved my career.</p>
+                <p><?php echo $lawyer['lawyer_name']; ?> was professional, compassionate, and incredibly skilled. They saved my career.</p>
             </div>
             <div class="review-card">
                 <div class="review-author">Michael T.</div>
@@ -195,7 +196,7 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
             <div class="review-card">
                 <div class="review-author">Sarah P.</div>
                 <div class="stars">★★★★★</div>
-                <p>His expertise turned a hopeless case into a complete dismissal. Forever grateful!</p>
+                <p>Their expertise turned a hopeless case into a complete dismissal. Forever grateful!</p>
             </div>
             <div class="review-card">
                 <div class="review-author">James K.</div>
@@ -209,11 +210,18 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
 
 <!-- Profile banner styling -->
 <style>
-    .profile-banner {
-        background: #0A66C2 url('lawyer/lawyer_assets/uploads/profilepic/<?php echo $lawyer['lawyer_picture']; ?>') center/cover no-repeat;
-        height: 200px;
-        position: relative;
-    }
+.profile-banner {
+    background: linear-gradient(rgba(10, 35, 66, 0.6), rgba(10, 35, 66, 0.6)),
+                url('assets/images/hero-banner/banner.png');
+    background-size: cover;       /* image puri jagah cover kare */
+    background-position: center;  /* center se adjust ho */
+    background-repeat: no-repeat; /* repeat na ho */
+    height: 200px;
+    width: 100%;                  /* full width mein chale */
+    position: relative;
+}
+
+
 </style>
 
 <?php

@@ -12,6 +12,7 @@ include_once("lawyer_includes/lawyer_handlers/lawyerRegister_handler.php");
   <title>Lawyer-Register</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="lawyer_assets/css/form.css">
+  <link rel="icon" href="lawyer_assets/img/logoWhite.png">
   <style>
     body {
       background: linear-gradient(to right, #0a2342da, rgba(218, 165, 32, 0.500));
@@ -37,17 +38,23 @@ include_once("lawyer_includes/lawyer_handlers/lawyerRegister_handler.php");
       <form method="POST" enctype="multipart/form-data">
 
 
+        <!-- Error Messege -->
+        <?php if (!empty($error)): ?>
+          <div id="errorMsg" style="color: #df1717; text-align:center; margin-bottom: 10px; background: #ffa0a0; padding:6px; border-radius:6px;">
+            <?php echo $error ?>
+          </div>
+        <?php endif; ?>
 
         <!-- Lawyer name -->
         <div>
           <label for="name"><i class="ri-user-line"></i></label>
-          <input type="text" id="name" placeholder="Name" required name="name" value="<?= isset($_POST['name']) ? $_POST['name'] : '' ?>">
+          <input type="text" id="name" placeholder="Name" required name="name" value="<?php echo isset($_POST['name']) ? $_POST['name'] : '' ?>">
         </div>
 
         <!-- Lawyer email -->
         <div>
           <label for="email"><i class="ri-mail-line"></i></label>
-          <input type="email" id="email" placeholder="Email" required name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : '' ?>">
+          <input type="email" id="email" placeholder="Email" required name="email" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
         </div>
 
         <!-- Lawyer password -->

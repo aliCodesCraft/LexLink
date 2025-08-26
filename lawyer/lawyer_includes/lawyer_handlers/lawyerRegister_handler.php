@@ -2,9 +2,8 @@
 // Include initialization (session + database connection)
 include_once("lawyer_includes/lawyer_utils/init.php");
 
-// Messages
+// Error messgae
 $error = "";
-$success = "";
 
 // Get all categories from DB
 $categoryQuery = "SELECT * FROM categories";
@@ -14,7 +13,7 @@ $categoryData = mysqli_query($connection, $categoryQuery);
 $cityQuery = "SELECT * FROM cities";
 $cityData = mysqli_query($connection, $cityQuery);
 
-// Form submit check
+// Proceed only if form submitted
 if (isset($_POST['btnRegister']) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
   // File Uploads
@@ -84,10 +83,10 @@ if (isset($_POST['btnRegister']) && $_SERVER["REQUEST_METHOD"] == "POST") {
     $result = mysqli_query($connection, $insertQuery);
 
     if ($result) {
-      $success = "Account created successfully! You can now login";
 
+       $_SESSION['account-success'] = "Account registered! Login to continue.";
        // redirect after success
-      header("Location: lawyer-login.php?done=$success");
+      header("Location: lawyer-login.php");
       exit;
       
     } else {

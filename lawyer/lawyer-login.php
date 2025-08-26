@@ -1,14 +1,11 @@
 <?php
-// Include form hanlder
+// Include init (session and databse) & form hanlder
+include_once("lawyer_includes/lawyer_utils/init.php");
 include_once("lawyer_includes/lawyer_handlers/lawyerLogin_handler.php");
-
-// Account regitser success message
-
-if(isset($_GET['done'])){
-  $success = $_GET['done'];
-}
-
 ?>
+
+
+<!-- Form Html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,6 +15,7 @@ if(isset($_GET['done'])){
   <title>Lawyer-Login</title>
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
   <link rel="stylesheet" href="lawyer_assets/css/form.css">
+  <link rel="icon" href="lawyer_assets/img/logoWhite.png">
 </head>
 
 <body>
@@ -30,20 +28,22 @@ if(isset($_GET['done'])){
         <!-- Error Messege -->
         <?php if (!empty($error)): ?>
           <div id="errorMsg" style="color: #df1717; text-align:center; margin-bottom: 10px; background: #ffa0a0; padding:6px; border-radius:6px;">
-            <?= $error ?>
+            <?php echo $error ?>
           </div>
         <?php endif; ?>
 
-        <!-- Success Messege -->
-        <?php if (!empty($success)): ?>
-          <div id="successMsg" style="color: green; text-align:center; margin-bottom: 10px; background: lightgreen; padding:6px; border-radius:6px;">
-            <?= $success ?>
+        <!-- Success Message -->
+        <?php if (isset($_SESSION['account-success'])): ?>
+          <div id="successMsg" style="color:green; background:lightgreen; padding:6px; border-radius:6px; text-align:center; margin-bottom:10px;">
+            <?php echo htmlspecialchars($_SESSION['account-success']) ?>
           </div>
+          <?php unset($_SESSION['account-success']); ?>
         <?php endif; ?>
+
 
         <div>
           <label for="email"><i class="ri-mail-line"></i></label>
-          <input type="email" id="email" placeholder="Email" name="loginemail" value="<?= isset($_POST['loginemail']) ? $_POST['email'] : '' ?>">
+          <input type="email" id="email" placeholder="Email" name="loginemail" value="<?php echo $_POST['loginemail']?>">
         </div>
         <div>
           <label for="password"><i class="ri-lock-line"></i></label>

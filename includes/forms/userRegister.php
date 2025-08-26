@@ -33,12 +33,12 @@ include_once("includes/handlers/registerForm_handler.php"); ?>
 
             <div class="blur-input-group">
                 <i class="ri-user-line"></i>
-                <input type="text" placeholder="Your Name" required name="name" />
+                <input type="text" placeholder="Your Name" required name="name" value="<?php echo $_POST['name']; ?>" />
             </div>
 
             <div class="blur-input-group">
                 <i class="ri-mail-line"></i>
-                <input type="email" placeholder="Your Email" required name="email" />
+                <input type="email" placeholder="Your Email" required name="email" value="<?php echo $_POST['email']; ?>" />
             </div>
 
             <div class="blur-input-group">

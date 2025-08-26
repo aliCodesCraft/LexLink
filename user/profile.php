@@ -27,28 +27,42 @@ if (isset($_POST['btnUserUpdate']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (mysqli_num_rows($checkResult) > 0) {
         $error = "⚠️ Email already exists!";
-    } elseif ($userPassword !== $userConfirmPassword) {
-        $error = "❌ Passwords do not match!";
     } else {
-        // Hash password and update user data
-        $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
-
-        $updateQuery = "UPDATE users 
-                        SET user_name='$userName', user_email='$userEmail', user_password='$hashedPassword' 
-                        WHERE user_id='$userID'";
-
-        $updateResult = mysqli_query($connection, $updateQuery);
-
-        if ($updateResult) {
-            $success = "✅ Updation successful!";
-            $_SESSION['username'] = $userName;
-            $_SESSION['useremail'] = $userEmail;
+        // ✅ Password handling
+        if (!empty($userPassword) && !empty($userConfirmPassword)) {
+            if ($userPassword === $userConfirmPassword) {
+                $hashedPassword = password_hash($userPassword, PASSWORD_DEFAULT);
+            } else {
+                $error = "❌ Passwords do not match!";
+            }
         } else {
-            $error = "❌ Something went wrong during updation!";
+            // Keep old password if no new one entered
+            $getOldPassword = "SELECT user_password FROM users WHERE user_id='$userID'";
+            $passResult = mysqli_query($connection, $getOldPassword);
+            $passRow = mysqli_fetch_assoc($passResult);
+            $hashedPassword = $passRow['user_password'];
+        }
+
+        // Update only if no error so far
+        if (empty($error)) {
+            $updateQuery = "UPDATE users 
+                            SET user_name='$userName',  user_email='$userEmail',  user_password='$hashedPassword' 
+                            WHERE user_id='$userID'";
+
+            $updateResult = mysqli_query($connection, $updateQuery);
+
+            if ($updateResult) {
+                $success = "✅ Updation successful!";
+                $_SESSION['username'] = $userName;
+                $_SESSION['useremail'] = $userEmail;
+            } else {
+                $error = "❌ Something went wrong during updation!";
+            }
         }
     }
 }
 ?>
+
 
 <!-- Update Profile Form Modal -->
 <div class="blur-form-background" id="user-register-form" style="display: block;">
