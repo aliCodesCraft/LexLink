@@ -29,8 +29,6 @@ include_once("includes/forms/userLogin.php");
 include_once("includes/forms/userRegister.php");
 ?>
 
-
-
 <!-- ==========Hero Section Start========= -->
 <div class="hero-container" id="Home">
     <div class="hero">
@@ -110,7 +108,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Criminal Law -->
                     <li class="sc-item">
-                        <a href="criminal-law">
+                        <a href="#">
                             <img loading="lazy" alt="Criminal Law" src="assets/images/law/criminal.png" height="69" width="69">
                             <p>Criminal Law</p>
                         </a>
@@ -118,7 +116,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Family Law -->
                     <li class="sc-item">
-                        <a href="family-law">
+                        <a href="#">
                             <img loading="lazy" alt="Family Law" src="assets/images/law/Divorce.png" height="69" width="69">
                             <p>Divorse Law</p>
                         </a>
@@ -126,7 +124,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Property Law -->
                     <li class="sc-item">
-                        <a href="property-law">
+                        <a href="#">
                             <img loading="lazy" alt="Property Law" src="assets/images/law/property.png" height="69" width="69">
                             <p>Property Law</p>
                         </a>
@@ -134,7 +132,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Education Law -->
                     <li class="sc-item">
-                        <a href="education-law">
+                        <a href="#">
                             <img loading="lazy" alt="Education Law" src="assets/images/law/education.png" height="69" width="69">
                             <p>Education Law</p>
                         </a>
@@ -142,7 +140,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Cyber Law -->
                     <li class="sc-item">
-                        <a href="cyber-law">
+                        <a href="#">
                             <img loading="lazy" alt="Cyber Law" src="assets/images/law/cyber.png" height="69" width="69">
                             <p>Cyber Law</p>
                         </a>
@@ -150,7 +148,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Traffic Law -->
                     <li class="sc-item">
-                        <a href="traffic-law">
+                        <a href="#">
                             <img loading="lazy" alt="Traffic Law" src="assets/images/law/traffic.png" height="69" width="69">
                             <p>Traffic Law</p>
                         </a>
@@ -158,7 +156,7 @@ include_once("includes/forms/userRegister.php");
 
                     <!-- Employment Law -->
                     <li class="sc-item">
-                        <a href="employment-law">
+                        <a href="#">
                             <img loading="lazy" alt="Employment Law" src="assets/images/law/employment.png" height="69" width="69">
                             <p>Employment Law</p>
                         </a>

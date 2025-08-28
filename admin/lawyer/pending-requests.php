@@ -4,7 +4,9 @@ include_once("../includes/config.php");
 ?>
 
 <?php
-$getlawyers = "SELECT * FROM `lawyers` INNER JOIN `categories` ON lawyers.lawyer_id = categories.category_id WHERE `lawyer_status` = 'pending' ";
+$getlawyers = "SELECT * FROM `lawyers` 
+INNER JOIN `categories` ON lawyers.lawyer_id = categories.category_id 
+WHERE `lawyer_status` = 'pending' ";
 $lawyerResults = mysqli_query($connection, $getlawyers);
 ?>
 

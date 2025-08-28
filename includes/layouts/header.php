@@ -26,6 +26,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <link rel="stylesheet" href="/LexLink/assets/css/custom.css">
   <link rel="stylesheet" href="/LexLink/assets/css/swiper-bundle.min.css">
   <link rel="stylesheet" href="/LexLink/assets/css/responsive.css">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 
   <style>

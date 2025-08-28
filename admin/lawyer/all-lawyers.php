@@ -5,7 +5,9 @@ include_once("../includes/config.php");
 
 <?php
 
-$getCompleted = "SELECT * FROM `lawyers` INNER JOIN `categories` ON lawyers.lawyer_id = categories.category_id WHERE `lawyer_status` = 'active' ";
+$getCompleted = "SELECT * FROM `lawyers` 
+INNER JOIN `categories` ON lawyers.lawyer_category = categories.category_id 
+WHERE `lawyer_status` = 'active' ";
 $completedResults = mysqli_query($connection, $getCompleted);
 
 

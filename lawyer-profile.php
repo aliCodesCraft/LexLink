@@ -12,7 +12,7 @@ include_once("includes/layouts/header.php");
 <!-- Fetch lawyer details based on selected ID -->
 <?php
 // Get lawyer ID from URL
-$LawyerID = $_GET['ID']; 
+$LawyerID = $_GET['ID'];
 
 // Booking form handler
 include_once("includes/handlers/bookingForm_handler.php");
@@ -27,7 +27,7 @@ WHERE `lawyer_id` = $LawyerID";
 $lawyerData = mysqli_query($connection, $getLawyers);
 
 // Converting in assoc
-$lawyer = mysqli_fetch_assoc($lawyerData); 
+$lawyer = mysqli_fetch_assoc($lawyerData);
 ?>
 
 
@@ -64,7 +64,8 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
             <!-- Appointment date & time -->
             <div class="blur-input-group">
                 <i class="ri-calendar-schedule-fill"></i>
-                <input type="datetime-local" placeholder="date time" required name="date-time" />
+                <input type="datetime-local" placeholder="date time" id="dt" required name="date-time" />
+                <span id="error" style="color:red; font-size:14px;"></span>
             </div>
 
             <!-- Message or case details -->
@@ -210,21 +211,44 @@ $lawyer = mysqli_fetch_assoc($lawyerData);
 
 <!-- Profile banner styling -->
 <style>
-.profile-banner {
-    background: linear-gradient(rgba(10, 35, 66, 0.6), rgba(10, 35, 66, 0.6)),
-                url('assets/images/hero-banner/banner.png');
-    background-size: cover;       /* image puri jagah cover kare */
-    background-position: center;  /* center se adjust ho */
-    background-repeat: no-repeat; /* repeat na ho */
-    height: 200px;
-    width: 100%;                  /* full width mein chale */
-    position: relative;
-}
-
-
+    .profile-banner {
+        background: linear-gradient(rgba(10, 35, 66, 0.6), rgba(10, 35, 66, 0.6)),
+            url('assets/images/hero-banner/banner.png');
+        background-size: cover;
+        /* image puri jagah cover kare */
+        background-position: center;
+        /* center se adjust ho */
+        background-repeat: no-repeat;
+        /* repeat na ho */
+        height: 200px;
+        width: 100%;
+        /* full width mein chale */
+        position: relative;
+    }
 </style>
+
+
+<script>
+  const input = document.getElementById("dt");
+  const error = document.getElementById("error");
+
+  // Set minimum = current time
+  let now = new Date().toISOString().slice(0,16); 
+  input.min = now;
+
+  input.addEventListener("input", function() {
+    if (input.value < now) {
+      input.setCustomValidity("⚠ Please select a valid date and time (not in the past).");
+      error.textContent = "⚠ You cannot select a past date/time.";
+    } else {
+      input.setCustomValidity(""); // clear error
+      error.textContent = "";
+    }
+  });
+</script>
+
 
 <?php
 // Include footer
-include_once("includes/layouts/footer.php"); 
-?> 
+include_once("includes/layouts/footer.php");
+?>

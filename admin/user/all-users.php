@@ -16,7 +16,7 @@ $userResults = mysqli_query($connection, $getusers);
     <!-- Table -->
     <div class="card shadow mb-4">
         <div class="card-header py-3 bg-warning">
-            <h6 class="m-0 font-weight-bold text-light">All Lawyers</h6>
+            <h6 class="m-0 font-weight-bold text-light">All User</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -39,7 +39,6 @@ $userResults = mysqli_query($connection, $getusers);
                                 <td><?php echo $user['user_created_at']; ?></td>
                                 <td>
                                     <a href="actions/reject.php?appID=<?php echo $completed['appointment_id']; ?>" class="btn btn-danger">Delete</a>
-                                    <a href="../actions/review.php?appID=<?php echo $completed['appointment_id']; ?>" class="btn btn-warning">Review</a>
                                 </td>
 
                             </tr>

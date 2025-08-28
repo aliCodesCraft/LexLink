@@ -1,3 +1,7 @@
+<?php
+include_once("includes/auth.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +28,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link href="/LexLink/admin/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <!-- SweetAlert2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" rel="stylesheet">
 
 
     <style>
@@ -65,7 +71,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/LexLink">
                 <div class="sidebar-brand-icon" style="margin-top: 5rem !important;">
                     <img src="/LexLink/admin/assets/img/logoWhite.png" alt="" width="100%">
                 </div>
@@ -111,7 +117,6 @@
                 <div id="collapseusers" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">More Options:</h6>
-                        <a class="collapse-item" href="/LexLink/admin/user/pending-requests.php">Pending Requests</a>
                         <a class="collapse-item" href="/LexLink/admin/user/all-users.php">All Users</a>
                     </div>
                 </div>
@@ -126,25 +131,8 @@
                 <div id="collapseAppointments" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">More Options:</h6>
-                        <a class="collapse-item" href="/LexLink/admin/appointments/manage-appointments.php">Manage Appointments</a>
-
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fa-solid fa-id-card-clip"></i>
-                    <span>My Profile</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">More Options:</h6>
-                        <a class="collapse-item" href="/LexLink/admin/view-profile.php">View Profile</a>
-                        <a class="collapse-item" href="/LexLink/admin/edit-profile.php">Edit Profile</a>
+                        <a class="collapse-item" href="/LexLink/admin/appointments/active-appointments.php">Active Appointments</a>
+                        <a class="collapse-item" href="/LexLink/admin/appointments/past-appointments.php">Past Appointments</a>
                     </div>
                 </div>
             </li>
@@ -338,7 +326,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $_SESSION['username']; ?></span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
